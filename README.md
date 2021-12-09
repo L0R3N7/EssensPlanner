@@ -1,2 +1,2 @@
-# RezeptePlanner
-Ein Programm, welches einem ermöglicht Rezepte zu planen
+# EssensPlanner
+Ein Programm, welches einem ermöglicht Gerichtezu planen
