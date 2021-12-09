@@ -51,3 +51,14 @@ mit Tags (Vegan, Vegitarisch, Gesundheit, Raiting)
 - rezepte 
 - zutaten
 - rezepte plannen 
+
+
+
+
+
+Login, Sign In
+Rezepte Suchen
+Rezept Anzeigen
+Zutaten Anzeigen
+Essensplan
+Einkaufsliste
