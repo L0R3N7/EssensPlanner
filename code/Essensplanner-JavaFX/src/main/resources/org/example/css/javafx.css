@@ -1,0 +1,43 @@
+/*  Color - Variables   */
+*{
+    -fx-color-bg-light: #F2EAF0;
+    -fx-color-highlight: #C70039;
+    -fx-color-color: #7E2D66;
+    -fx-color-white: #fff;
+    -fx-color-shadow: rgba(0, 0, 0, 0.2);
+}
+
+.bg-ele{
+    -fx-background-color: -fx-color-bg-light;
+}
+
+.white-ele{
+    -fx-background-color: -fx-color-white;
+}
+
+.rounded-all{
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
+}
+
+.shadow{
+    -fx-effect: dropshadow(three-pass-box,-fx-color-shadow, 20, .0005, 0, 0);
+}
+
+.backgroundImageKüchentisch{
+    -fx-background-image: url('../image/bowl_cooking_cuisine_cutting_board_delicious_dish_eat_epicure-1558645.jpg');
+    -fx-background-size: cover;
+}
+
+.header {
+    -fx-font-size: 64;
+    -fx-text-fill: -fx-color-color;
+    -fx-fill: -fx-color-color;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+}
+
+.input{
+
+}
+
