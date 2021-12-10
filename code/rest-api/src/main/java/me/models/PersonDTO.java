@@ -1,6 +1,6 @@
 package me.models;
 
-public class UserDTO {
+public class PersonDTO {
     private String email;
     private String password;
 

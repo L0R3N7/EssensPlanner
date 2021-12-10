@@ -1,7 +1,7 @@
 package me.api;
 
-import me.models.UserDTO;
-import me.workloads.user.UserService;
+import me.models.PersonDTO;
+import me.workloads.user.PersonService;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -10,29 +10,29 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-@Path("user")
+@Path("person")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class UserResource {
+public class PersonResource {
 
     @Inject
-    private UserService userService;
+    private PersonService personService;
 
     @POST
     @Transactional
     public Response addUser(
-        UserDTO newUser
+        PersonDTO newUser
     ){
-
-        this.userService.addUser(newUser);
+        return Response.ok(
+                this.personService.addPerson(newUser.getEmail(),
+                        newUser.getPassword())).build();
     }
 
-    @POST
+    /*@POST
     @Path("login")
     public Response validateUser)(
             UserDTO validUser
             ){
         User u =
-
-    }
+    }*/
 }
