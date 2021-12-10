@@ -1,4 +1,4 @@
-package me.lorenz;
+package me.api;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

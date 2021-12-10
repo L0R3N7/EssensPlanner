@@ -1,4 +1,4 @@
-package me.lorenz;
+package me;
 
 import io.quarkus.test.junit.NativeImageTest;
 
