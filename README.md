@@ -1,2 +1,2 @@
 # EssensPlanner
-Ein Programm, welches einem ermöglicht Gerichtezu planen
+Ein Programm, welches einem ermöglicht Gerichte zu planen
