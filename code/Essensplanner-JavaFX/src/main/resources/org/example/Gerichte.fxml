@@ -11,7 +11,8 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="622.0" stylesheets="@css/javafx.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="org.example.GerichteController">
+<?import javafx.scene.layout.Pane?>
+<GridPane fx:id="GerichteElementRoot" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="622.0" stylesheets="@css/javafx.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="org.example.GerichteController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" percentWidth="15.0" prefWidth="139.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" percentWidth="85.0" prefWidth="390.0" />
@@ -42,7 +43,9 @@
                         <Text fx:id="GerichtBeschreibung" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fill-color" text="Protein, Kalorien" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <SVGPath fx:id="GerichtFav" content="M16 6.204l-5.528-0.803-2.472-5.009-2.472 5.009-5.528 0.803 4 3.899-0.944 5.505 4.944-2.599 4.944 2.599-0.944-5.505 4-3.899zM8 11.773l-3.492 1.836 0.667-3.888-2.825-2.753 3.904-0.567 1.746-3.537 1.746 3.537 3.904 0.567-2.825 2.753 0.667 3.888-3.492-1.836z&#10;&#10;" nodeOrientation="LEFT_TO_RIGHT" stroke="#971a1a" strokeWidth="0.0" style="-fx-scale-x: 3; -fx-scale-y: 3; -fx-translate-x: -25;" styleClass="fill-color" />
+                   <HBox alignment="center" fx:id="favclicker">
+                       <SVGPath fx:id="GerichtFav" content="M16 6.204l-5.528-0.803-2.472-5.009-2.472 5.009-5.528 0.803 4 3.899-0.944 5.505 4.944-2.599 4.944 2.599-0.944-5.505 4-3.899zM8 11.773l-3.492 1.836 0.667-3.888-2.825-2.753 3.904-0.567 1.746-3.537 1.746 3.537 3.904 0.567-2.825 2.753 0.667 3.888-3.492-1.836z&#10;&#10;" nodeOrientation="LEFT_TO_RIGHT" stroke="#971a1a" strokeWidth="0.0" style="-fx-scale-x: 3; -fx-scale-y: 3; -fx-translate-x: -25;" styleClass="fill-color" />
+                   </HBox>
                </children>
             </HBox>
          </children>

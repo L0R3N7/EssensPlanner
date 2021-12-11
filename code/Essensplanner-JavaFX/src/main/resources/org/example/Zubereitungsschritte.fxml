@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<HBox prefWidth="200.0" stylesheets="@css/javafx.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ZubereitungsschritteController">
+    <children>
+        <GridPane alignment="CENTER" gridLinesVisible="true" prefHeight="32.0" prefWidth="23.0" style="-fx-border-color: -fx-color-color;">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="padding-all-10">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fill-color" text="1" textAlignment="CENTER">
+
+                        </Text>
+                    </children>
+                </VBox>
+            </children>
+
+        </GridPane>
+        <HBox prefWidth="9999.0" styleClass="padding-all-10">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fill-color" text="asdjföladsjföladsjfölkajsdölfasdölfkjads" />
+            </children>
+        </HBox>
+    </children>
+</HBox>

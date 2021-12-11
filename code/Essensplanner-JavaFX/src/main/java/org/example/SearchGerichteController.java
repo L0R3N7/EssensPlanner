@@ -47,6 +47,7 @@ public class SearchGerichteController {
             Parent parent = fxmlLoader.load();
             GerichteController controller = (GerichteController) fxmlLoader.getController();
 
+            controller.setGerichteDTO(gerichteDTO);
             controller.setGerichtFav(gerichteDTO.getFav());
             controller.setGerichtBeschreibung(gerichteDTO.getDesc());
             controller.setGerichtName(gerichteDTO.getName());
@@ -57,7 +58,7 @@ public class SearchGerichteController {
         }
     }
     private void clearGerichte(){
-        vBox.getChildren().removeAll();
+        vBox.getChildren().remove(0, vBox.getChildren().size());
     }
 
 

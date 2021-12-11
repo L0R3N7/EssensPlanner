@@ -11,11 +11,11 @@ module org.example {
     requires com.google.gson;
 
     //needed for JavaFX
-    opens org.example to javafx.fxml;
 
     //needed for JSON
     opens org.example.apiClient to com.google.gson;
 
 
     exports org.example;
+    opens org.example to com.google.gson, javafx.fxml;
 }
