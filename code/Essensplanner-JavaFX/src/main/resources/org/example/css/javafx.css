@@ -29,7 +29,7 @@
     -fx-background-size: cover;
 }
 
-.header {
+.header{
     -fx-font-size: 64;
     -fx-text-fill: -fx-color-color;
     -fx-fill: -fx-color-color;
@@ -40,4 +40,22 @@
 .input{
 
 }
+
+.padding-all-10{
+    -fx-padding: 10 10 10 10;
+}
+
+.fill-color{
+    -fx-text-fill: -fx-color-color;
+    -fx-fill: -fx-color-color;
+}
+
+.gerichteleHeader{
+    -fx-font-size: 32;
+    -fx-text-fill: -fx-color-color;
+    -fx-fill: -fx-color-color;
+    -fx-text-alignment: left;
+    -fx-font-weight: bold;
+}
+
 

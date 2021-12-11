@@ -1,8 +1,9 @@
-package me.models;
+package org.example.apiClient.dto;
 
 public class PersonDTO {
     private String email;
     private String password;
+
 
     public PersonDTO() {
     }
@@ -27,4 +28,5 @@ public class PersonDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

@@ -23,6 +23,7 @@ public class PersonResource {
     public Response addUser(
         PersonDTO newUser
     ){
+        System.out.println("add User");
         return Response.ok(
                 this.personService.addPerson(newUser.getEmail(),
                         newUser.getPassword())).build();
