@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+
+<MenuBar xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.example.MenubarController">
+  <menus>
+    <Menu mnemonicParsing="false" text="Fenster">
+      <items>
+        <MenuItem fx:id="login" mnemonicParsing="false" text="login" />
+        <MenuItem fx:id="signin" mnemonicParsing="false" text="signin" />
+        <MenuItem fx:id="forgotpassword" mnemonicParsing="false" text="passwort vergessen" />
+        <MenuItem fx:id="searchgerichte" mnemonicParsing="false" text="suche nach Gerichten" />
+        <MenuItem fx:id="planner" mnemonicParsing="false" text="planner" />
+      </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="User">
+      <items>
+        <MenuItem fx:id="logout" mnemonicParsing="false" text="log out" />
+      </items>
+    </Menu>
+  </menus>
+</MenuBar>

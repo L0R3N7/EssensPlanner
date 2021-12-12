@@ -33,6 +33,7 @@ public class SearchGerichteController {
         //Placeholder
         ArrayList<GerichteDTO> arrayList = new ArrayList<>();
         GerichteDTO gericht = new GerichteDTO();
+        gericht.setUniqueId(1);
         gericht.setName("Food");
         gericht.setDesc("Protein 90 g, 3000 kcal");
         gericht.setFav(true);

@@ -55,6 +55,7 @@
 .fill-color{
     -fx-text-fill: -fx-color-color;
     -fx-fill: -fx-color-color;
+    -fx-stroke: -fx-color-color;
 }
 
 .gerichteleHeader{

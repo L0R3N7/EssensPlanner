@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,16 +15,24 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static BorderPane bpRoot = new BorderPane();
+
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("SignIn"), 640, 480);
+        bpRoot.setTop(loadFXML("menubar"));
+        setRoot("LogIn");
+
+        scene = new Scene(bpRoot, 640, 480);
         stage.setScene(scene);
         stage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+        bpRoot.setCenter(loadFXML(fxml));
+    }
+    public static void setRoot(Parent p) {
+        bpRoot.setCenter(p);
     }
 
     public static Parent loadFXML(String fxml) throws IOException {

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane fx:controller="org.example.PlannerController" dividerPositions="0.2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="bg-ele" stylesheets="@css/javafx.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+  <items>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="398.0" prefWidth="226.0" styleClass="bg-ele">
+         <content>
+            <VBox alignment="TOP_CENTER" prefHeight="515.0" prefWidth="117.0" styleClass="bg-white" />
+         </content>
+      </ScrollPane>
+      <GridPane alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" percentHeight="85.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <styleClass>
+                  <String fx:value="white-ele" />
+                  <String fx:value="shadow" />
+                  <String fx:value="rounded-all" />
+               </styleClass>
+               <top>
+                  <GridPane styleClass="padding-all-10" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <DatePicker />
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <Button onAction="#printEinkaufszettel" mnemonicParsing="false" text="Einkaufszettel" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+               </top>
+               <center>
+                  <GridPane alignment="CENTER" gridLinesVisible="true" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" percentHeight="85.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="gerichteleHeader" text="Mo" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="gerichteleHeader" text="So" GridPane.columnIndex="6" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="gerichteleHeader" text="Sa" GridPane.columnIndex="5" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="gerichteleHeader" text="Fr" GridPane.columnIndex="4" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="gerichteleHeader" text="Do" GridPane.columnIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="gerichteleHeader" text="Mi" GridPane.columnIndex="2" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="gerichteleHeader" text="Di" GridPane.columnIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="padding-all-10" />
+                        <String fx:value="fill-color" />
+                     </styleClass>
+                  </GridPane>
+               </center>
+            </BorderPane>
+         </children>
+      </GridPane>
+  </items>
+</SplitPane>

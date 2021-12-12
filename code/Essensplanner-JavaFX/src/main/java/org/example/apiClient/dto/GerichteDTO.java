@@ -1,28 +1,35 @@
 package org.example.apiClient.dto;
 
 public class GerichteDTO {
+    long uniqueId;
     String name;
     String desc;
     String imageUrl;
     Boolean fav;
 
-
-    public GerichteDTO(String name, String desc, String imageUrl, Boolean fav) {
+    public GerichteDTO(long uniqueId, String name, String desc, String imageUrl, Boolean fav) {
+        this.uniqueId = uniqueId;
         this.name = name;
         this.desc = desc;
         this.imageUrl = imageUrl;
         this.fav = fav;
     }
+    public GerichteDTO() {
+    }
 
+    public long getUniqueId() {
+        return uniqueId;
+    }
+
+    public void setUniqueId(long uniqueId) {
+        this.uniqueId = uniqueId;
+    }
     public String getImageUrl() {
         return imageUrl;
     }
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public GerichteDTO() {
     }
 
     public String getName() {

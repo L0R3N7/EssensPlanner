@@ -10,7 +10,7 @@ import org.example.apiClient.dto.PersonDTO;
 
 import java.io.IOException;
 
-public class SignInController {
+public class LogInController {
     @FXML
     private TextField EMailField;
     @FXML
@@ -24,7 +24,7 @@ public class SignInController {
         boolean success = PersonServiceClient.addPersonToApi(new PersonDTO(EMailField.getText(), PasswordField.getText()));
         System.out.println((success)?"success":"failure");*/
 
-        System.out.println("Start Signing In");
+        System.out.println("Start Logig In");
         boolean success = PersonServiceClient.login(new PersonDTO(EMailField.getText(), PasswordField.getText()));
 
         if (success){

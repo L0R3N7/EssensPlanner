@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -26,52 +27,13 @@ public class GerichteController {
     public HBox favclicker;
     public GridPane GerichteElementRoot;
     boolean fav = false;
-
-
-
-    private GerichteDTO gerichteDTO = null;
+    GerichteDTO gerichteDTO = null;
 
     final private EventHandler<MouseEvent> favClickerEventHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent mouseEvent) {
             System.out.println("Changed Fav");
             setGerichtFav(!fav);
-
-            //HTTP Request to Change Fav
-            // Rezept
-            // Zutatenliste
-            // Zutat
-            // Rezept
-
-            //Placeholder for Response
-            ArrayList<ZutatenlisteDTO> zutatenlisteDTOArrayList = new ArrayList<>();
-            ArrayList<RezeptDTO> rezeptDTOArrayList = new ArrayList<>();
-
-            ZutatenlisteDTO zutatenlisteDTO1 = new ZutatenlisteDTO(500, "gramm", "Kidney Bohnen");
-            ZutatenlisteDTO zutatenlisteDTO2 = new ZutatenlisteDTO(.1, "kg", "Hühnerfilet");
-            ZutatenlisteDTO zutatenlisteDTO3 = new ZutatenlisteDTO(.5, "liter", "Tomatensoßse");
-
-            RezeptDTO rezeptDTO1 = new RezeptDTO(1, "Hühnerfilet würzen.");
-            RezeptDTO rezeptDTO2 = new RezeptDTO(2, "Hühnerfilet in kleine jeweils 2 cm große Stücke schneiden.");
-
-            zutatenlisteDTOArrayList.add(zutatenlisteDTO1);
-            zutatenlisteDTOArrayList.add(zutatenlisteDTO2);
-            zutatenlisteDTOArrayList.add(zutatenlisteDTO3);
-
-            rezeptDTOArrayList.add(rezeptDTO1);
-            rezeptDTOArrayList.add(rezeptDTO2);
-
-            /*try{
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Rezepte.fxml"));
-                Parent parent = fxmlLoader.load();
-                RezepteController controller = (RezepteController) fxmlLoader.getController();
-
-                vBox.getChildren().add(parent);
-            }catch (IOException e){
-                e.printStackTrace();
-            }*/
-
-
             mouseEvent.consume();
         }
     };
@@ -80,9 +42,17 @@ public class GerichteController {
         @Override
         public void handle(MouseEvent mouseEvent) {
             System.out.println("Weiterleiten zu Rezepte");
+            try{
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Rezepte.fxml"));
+                Parent parent = fxmlLoader.load();
 
-            //HTTP Request
-            //
+                RezepteController controller = (RezepteController) fxmlLoader.getController();
+                controller.buildContent(gerichteDTO);
+
+                App.setRoot(parent);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
 
             mouseEvent.consume();
         }

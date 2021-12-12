@@ -19,8 +19,7 @@
             <children>
                 <VBox prefHeight="200.0" prefWidth="100.0" styleClass="padding-all-10">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fill-color" text="1" textAlignment="CENTER">
-
+                        <Text fx:id="Zubereitungsschritt" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fill-color" text="1" textAlignment="CENTER">
                         </Text>
                     </children>
                 </VBox>
@@ -29,7 +28,7 @@
         </GridPane>
         <HBox prefWidth="9999.0" styleClass="padding-all-10">
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fill-color" text="asdjföladsjföladsjfölkajsdölfasdölfkjads" />
+                <Text fx:id="Anleitung" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fill-color" text="asdjföladsjföladsjfölkajsdölfasdölfkjads" />
             </children>
         </HBox>
     </children>
