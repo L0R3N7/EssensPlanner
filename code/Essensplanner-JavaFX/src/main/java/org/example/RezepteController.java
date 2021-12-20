@@ -3,7 +3,9 @@ package org.example;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.example.apiClient.dto.GerichteDTO;
@@ -21,10 +23,17 @@ public class RezepteController {
     public TableColumn MessartColumn;
     public TableColumn ZutatenColumn;
     public VBox ZubereitungsschritteBerceich;
+    public GridPane root;
+    public ScrollPane widthwidthwidth;
+    public VBox widthwidthwidthwidthwidthwidth;
 
     @FXML
     private void initialize() {
-
+        root.setPrefHeight(App.bpRoot.heightProperty().get());
+        root.setPrefWidth(App.bpRoot.widthProperty().get());
+        widthwidthwidth.setPrefWidth(App.bpRoot.widthProperty().get());
+        widthwidthwidthwidthwidthwidth.setPrefWidth(App.bpRoot.widthProperty().get());
+        widthwidthwidthwidthwidthwidth.setPrefHeight(App.bpRoot.heightProperty().get());
     }
 
     public void buildContent(GerichteDTO gerichteDTO){

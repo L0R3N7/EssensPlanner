@@ -15,7 +15,7 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-    private static BorderPane bpRoot = new BorderPane();
+    public static BorderPane bpRoot = new BorderPane();
 
 
     @Override
@@ -29,7 +29,8 @@ public class App extends Application {
     }
 
     public static void setRoot(String fxml) throws IOException {
-        bpRoot.setCenter(loadFXML(fxml));
+        Parent p = loadFXML(fxml);
+        setRoot(p);
     }
     public static void setRoot(Parent p) {
         bpRoot.setCenter(p);
@@ -39,6 +40,7 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
 
     public static void main(String[] args) {
         launch();

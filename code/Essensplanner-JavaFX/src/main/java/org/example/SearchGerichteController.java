@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.example.apiClient.dto.GerichteDTO;
 
@@ -17,11 +18,15 @@ public class SearchGerichteController {
     public TextField SearchField;
     @FXML
     public VBox vBox;
+    public GridPane root;
 
     @FXML
     private void initialize() {
         ChangeListener<String> Searchlistener = (obs, ov, nv) -> searchGerichte(nv);
         SearchField.textProperty().addListener(Searchlistener);
+        root.setPrefHeight(App.bpRoot.heightProperty().get());
+        root.setPrefWidth(App.bpRoot.widthProperty().get());
+        vBox.setPrefWidth(App.bpRoot.widthProperty().get());
     }
 
     private void searchGerichte(String text){

@@ -1,20 +1,52 @@
 package me.workloads.user;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+//import me.workloads.gerichte.Zutatenliste;
+import org.hibernate.Hibernate;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Person {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private long id;
+   private Long id;
 
    private String email;
    private String password;
+   private String uniqueSessionCode;
 
-   public Person() {
+   @OneToMany(
+           mappedBy = "person",
+           cascade = CascadeType.ALL
+   )
+   ArrayList<Geplanntes> geplanntesList = new ArrayList<>();
+
+   /*@OneToMany(
+           mappedBy = "person",
+           cascade = CascadeType.ALL
+   )
+   ArrayList<FavoritGerichte> favoritGerichteArrayList = new ArrayList<>();*/
+
+   public Person() {}
+
+
+   public ArrayList<Geplanntes> getGeplanntesList() {
+      return geplanntesList;
+   }
+
+   public void setGeplanntesList(ArrayList<Geplanntes> geplanntesList) {
+      this.geplanntesList = geplanntesList;
+   }
+
+   public String getUniqueSessionCode() {
+      return uniqueSessionCode;
+   }
+
+   public void setUniqueSessionCode(String uniqueSessionCode) {
+      this.uniqueSessionCode = uniqueSessionCode;
    }
 
    public long getId() {
@@ -41,10 +73,24 @@ public class Person {
       this.password = password;
    }
 
+
    public static Person create(String email, String password) {
          Person newPerson = new Person();
          newPerson.setEmail(email);
          newPerson.setPassword(password);
          return newPerson;
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+      Person person = (Person) o;
+      return id != null && Objects.equals(id, person.id);
+   }
+
+   @Override
+   public int hashCode() {
+      return getClass().hashCode();
    }
 }

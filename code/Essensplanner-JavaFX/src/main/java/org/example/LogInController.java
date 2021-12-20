@@ -5,12 +5,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import org.example.apiClient.PersonServiceClient;
 import org.example.apiClient.dto.PersonDTO;
 
 import java.io.IOException;
 
 public class LogInController {
+    @FXML
+    public GridPane root;
     @FXML
     private TextField EMailField;
     @FXML
@@ -19,10 +22,13 @@ public class LogInController {
     private Button LoginButton;
 
     @FXML
+    private void initialize() {
+        root.setPrefHeight(App.bpRoot.heightProperty().get());
+        root.setPrefWidth(App.bpRoot.widthProperty().get());
+    }
+
+    @FXML
     public void Login(ActionEvent actionEvent) {
-        /*System.out.println("Start Request");
-        boolean success = PersonServiceClient.addPersonToApi(new PersonDTO(EMailField.getText(), PasswordField.getText()));
-        System.out.println((success)?"success":"failure");*/
 
         System.out.println("Start Logig In");
         boolean success = PersonServiceClient.login(new PersonDTO(EMailField.getText(), PasswordField.getText()));

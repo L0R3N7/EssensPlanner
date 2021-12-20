@@ -28,13 +28,13 @@ public class MenubarController {
         signin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                System.out.println("To Do");
+                transferTo("SignIn");
             }
         });
         forgotpassword.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                System.out.println("To Do");
+                transferTo("PasswortVergessen");
             }
         });
         searchgerichte.setOnAction(new EventHandler<ActionEvent>() {

@@ -42,9 +42,10 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 15;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-stroke-width: 5;" styleClass="header" text="Log in" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-stroke-width: 5;" styleClass="header" text="Sign in" />
                         <TextField fx:id="EMailField" promptText="Email" />
                         <PasswordField fx:id="PasswordField" promptText="Password" />
+                        <PasswordField fx:id="PasswordField1" promptText="Password" />
                         <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#Login" text="Button" />
                         <HBox />
                         <HBox />
