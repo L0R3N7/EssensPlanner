@@ -1,6 +1,5 @@
 package me.api;
 
-import me.models.PersonDTO;
 import me.workloads.person.logic.PersonService;
 
 import javax.inject.Inject;
