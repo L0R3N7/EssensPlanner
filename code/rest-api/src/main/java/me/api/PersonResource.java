@@ -1,7 +1,7 @@
 package me.api;
 
 import me.models.PersonDTO;
-import me.workloads.user.PersonService;
+import me.workloads.person.logic.PersonService;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;

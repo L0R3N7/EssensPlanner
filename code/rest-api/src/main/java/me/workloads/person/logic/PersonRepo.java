@@ -1,4 +1,6 @@
-package me.workloads.user;
+package me.workloads.person.logic;
+
+import me.workloads.person.Person;
 
 public interface PersonRepo {
 
