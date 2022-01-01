@@ -5,8 +5,13 @@ package me.workloads.person;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.util.List;
 
 @Entity
@@ -16,8 +21,9 @@ public class Person {
    private Long id;
 
    private String email;
-   private String password;
-   private String uniqueSessionCode;
+   private byte[] password;
+   private byte[] uniqueSessionCode;
+   private byte[] salt;
 
    @OneToMany(
            mappedBy = "id.person",
@@ -33,7 +39,12 @@ public class Person {
    @OnDelete(action = OnDeleteAction.CASCADE)
    List<FavouriteGerichte> favouriteGerichteList;
 
-   public Person() {}
+
+   public Person() {
+      SecureRandom random = new SecureRandom();
+      salt = new byte[16];
+      random.nextBytes(salt);
+   }
 
    public Long getId() {
       return id;
@@ -51,19 +62,27 @@ public class Person {
       this.email = email;
    }
 
-   public String getPassword() {
+   public byte[] getPassword() {
       return password;
    }
 
-   public void setPassword(String password) {
+   public void setPassword(byte[] password) {
       this.password = password;
    }
 
-   public String getUniqueSessionCode() {
+   public byte[] getSalt() {
+      return salt;
+   }
+
+   public void setSalt(byte[] salt) {
+      this.salt = salt;
+   }
+
+   public byte[] getUniqueSessionCode() {
       return uniqueSessionCode;
    }
 
-   public void setUniqueSessionCode(String uniqueSessionCode) {
+   public void setUniqueSessionCode(byte[] uniqueSessionCode) {
       this.uniqueSessionCode = uniqueSessionCode;
    }
 
@@ -86,7 +105,41 @@ public class Person {
    public static Person create(String email, String password) {
          Person newPerson = new Person();
          newPerson.setEmail(email);
-         newPerson.setPassword(password);
+         newPerson.hashPassword(password);
          return newPerson;
+   }
+
+   public void generateSessionCode(){
+      this.uniqueSessionCode = this.hashRandomSalt(email);
+   }
+
+   private void hashPassword(String password){
+      this.password = hash(password, this.salt);
+   }
+
+   private boolean comparePassword(String password){
+      return this.password.equals(hash(password, this.salt));
+   }
+
+   private byte[] hashRandomSalt(String toHash){
+      SecureRandom random = new SecureRandom();
+      byte[] randomSalt = new byte[16];
+      random.nextBytes(randomSalt);
+      return hash(toHash, randomSalt);
+   }
+
+   private byte[] hash(String password, byte[] salt){
+      KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
+      SecretKeyFactory factory;
+      try {
+         factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+         return factory.generateSecret(spec).getEncoded();
+      }catch (NoSuchAlgorithmException e){
+         e.printStackTrace();
+      } catch (InvalidKeySpecException e) {
+         e.printStackTrace();
+      }
+
+      return null;
    }
 }
