@@ -23,5 +23,6 @@ public class PersonRepoImpl implements PersonRepo {
     @Override
     public void add(Person u) {
         entityManager.persist(u);
+        System.out.println("User has been added");
     }
 }

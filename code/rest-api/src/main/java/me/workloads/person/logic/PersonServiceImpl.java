@@ -16,6 +16,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person addPerson(String email, String password) {
         Person u = Person.create(email, password);
+        u.generateSessionCode();
         personRepo.add(u);
         return u;
     }

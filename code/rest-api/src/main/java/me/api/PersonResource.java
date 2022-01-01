@@ -1,5 +1,7 @@
 package me.api;
 
+import me.models.PersonDTO;
+import me.models.mapper.Mappings;
 import me.workloads.person.logic.PersonService;
 
 import javax.inject.Inject;
@@ -18,15 +20,19 @@ public class PersonResource {
     private PersonService personService;
 
     @POST
+    @Path("signin")
     @Transactional
     public Response addUser(
         PersonDTO newUser
     ){
-        System.out.println("add User");
+        System.out.println("New User: "+newUser.getEmail()+" is signing in");
         return Response.ok(
-                this.personService.addPerson(newUser.getEmail(),
-                        newUser.getPassword())).build();
+                Mappings.INSTANCE.personToPersonDTO(this.personService.addPerson(newUser.getEmail(),
+                        newUser.getPassword()))
+                ).build();
     }
+
+
 
     /*@POST
     @Path("login")
