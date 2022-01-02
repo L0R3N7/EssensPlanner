@@ -1,30 +1,43 @@
 package org.example.apiClient.dto;
 
-public class RezeptDTO {
-    private int reihenfolge;
-    private String desc;
+import java.io.Serializable;
+import java.util.Objects;
 
-    public RezeptDTO() {
+public class RezeptDTO implements Serializable {
+    private final Long idId;
+    private final String content;
+
+    public RezeptDTO(Long idId, String content) {
+        this.idId = idId;
+        this.content = content;
     }
 
-    public RezeptDTO(int reihenfolge, String desc) {
-        this.reihenfolge = reihenfolge;
-        this.desc = desc;
+    public Long getIdId() {
+        return idId;
     }
 
-    public int getReihenfolge() {
-        return reihenfolge;
+    public String getContent() {
+        return content;
     }
 
-    public void setReihenfolge(int reihenfolge) {
-        this.reihenfolge = reihenfolge;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RezeptDTO entity = (RezeptDTO) o;
+        return Objects.equals(this.idId, entity.idId) &&
+                Objects.equals(this.content, entity.content);
     }
 
-    public String getDesc() {
-        return desc;
+    @Override
+    public int hashCode() {
+        return Objects.hash(idId, content);
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "idId = " + idId + ", " +
+                "content = " + content + ")";
     }
 }

@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.example.apiClient.RestApiClient;
+import org.example.apiClient.dto.PersonDTO;
 
 import java.io.IOException;
 
@@ -16,6 +18,7 @@ public class App extends Application {
 
     private static Scene scene;
     public static BorderPane bpRoot = new BorderPane();
+    public static AppData appData = new AppData();
 
 
     @Override
@@ -35,6 +38,7 @@ public class App extends Application {
     public static void setRoot(Parent p) {
         bpRoot.setCenter(p);
     }
+
 
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));

@@ -27,10 +27,12 @@ public class PersonResource {
     ){
         System.out.println("New User: "+newUser.getEmail()+" is signing in");
         return Response.ok(
-                Mappings.INSTANCE.personToPersonDTO(this.personService.addPerson(newUser.getEmail(),
-                        newUser.getPassword()))
+                Mappings.INSTANCE.personToPersonDTO(
+                        this.personService.addPerson(newUser.getEmail(), newUser.getPassword()))
                 ).build();
     }
+
+
 
 
 

@@ -1,17 +1,21 @@
-package me.models;
+package me.workloads.zutaten;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ZutatenDTO implements Serializable {
+public class ZutatenDto implements Serializable {
     private final Double amount;
     private final String messart;
     private final Long lebensmittelId;
+    @NotNull
+    private final String lebensmittelName;
 
-    public ZutatenDTO(Double amount, String messart, Long lebensmittelId) {
+    public ZutatenDto(Double amount, String messart, Long lebensmittelId, String lebensmittelName) {
         this.amount = amount;
         this.messart = messart;
         this.lebensmittelId = lebensmittelId;
+        this.lebensmittelName = lebensmittelName;
     }
 
     public Double getAmount() {
@@ -26,19 +30,24 @@ public class ZutatenDTO implements Serializable {
         return lebensmittelId;
     }
 
+    public String getLebensmittelName() {
+        return lebensmittelName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ZutatenDTO entity = (ZutatenDTO) o;
+        ZutatenDto entity = (ZutatenDto) o;
         return Objects.equals(this.amount, entity.amount) &&
                 Objects.equals(this.messart, entity.messart) &&
-                Objects.equals(this.lebensmittelId, entity.lebensmittelId);
+                Objects.equals(this.lebensmittelId, entity.lebensmittelId) &&
+                Objects.equals(this.lebensmittelName, entity.lebensmittelName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(amount, messart, lebensmittelId);
+        return Objects.hash(amount, messart, lebensmittelId, lebensmittelName);
     }
 
     @Override
@@ -46,6 +55,7 @@ public class ZutatenDTO implements Serializable {
         return getClass().getSimpleName() + "(" +
                 "amount = " + amount + ", " +
                 "messart = " + messart + ", " +
-                "lebensmittelId = " + lebensmittelId + ")";
+                "lebensmittelId = " + lebensmittelId + ", " +
+                "lebensmittelName = " + lebensmittelName + ")";
     }
 }

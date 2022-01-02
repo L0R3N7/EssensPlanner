@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import org.example.apiClient.PersonServiceClient;
 import org.example.apiClient.dto.PersonDTO;
 
 import java.io.IOException;
@@ -31,7 +30,7 @@ public class LogInController {
     public void Login(ActionEvent actionEvent) {
 
         System.out.println("Start Logig In");
-        boolean success = PersonServiceClient.login(new PersonDTO(EMailField.getText(), PasswordField.getText()));
+        boolean success = true; //PersonServiceClient.login(new PersonDTO(EMailField.getText(), PasswordField.getText()));
 
         if (success){
             System.out.println("Weiterleiten");

@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import org.example.apiClient.dto.GerichteDTO;
+import org.example.apiClient.dto.GerichtDTO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,26 +36,26 @@ public class SearchGerichteController {
         // To Do return Arraylist with GerichteDTO
 
         //Placeholder
-        ArrayList<GerichteDTO> arrayList = new ArrayList<>();
-        GerichteDTO gericht = new GerichteDTO();
-        gericht.setUniqueId(1);
+        ArrayList<GerichtDTO> arrayList = new ArrayList<>();
+        GerichtDTO gericht = new GerichtDTO();
+        //gericht.setUniqueId(1);
         gericht.setName("Food");
-        gericht.setDesc("Protein 90 g, 3000 kcal");
-        gericht.setFav(true);
+        //gericht.setDesc("Protein 90 g, 3000 kcal");
+        //gericht.setFav(true);
         arrayList.add(gericht);
 
         arrayList.forEach(a -> buildGerichte(a));
     }
 
-    private void buildGerichte(GerichteDTO gerichteDTO){
+    private void buildGerichte(GerichtDTO gerichteDTO){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Gerichte.fxml"));
             Parent parent = fxmlLoader.load();
             GerichteController controller = (GerichteController) fxmlLoader.getController();
 
             controller.setGerichteDTO(gerichteDTO);
-            controller.setGerichtFav(gerichteDTO.getFav());
-            controller.setGerichtBeschreibung(gerichteDTO.getDesc());
+            //controller.setGerichtFav(gerichteDTO.getFav());
+            //controller.setGerichtBeschreibung(gerichteDTO.getDesc());
             controller.setGerichtName(gerichteDTO.getName());
 
             vBox.getChildren().add(parent);

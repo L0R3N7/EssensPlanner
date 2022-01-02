@@ -8,9 +8,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import org.example.apiClient.dto.GerichteDTO;
+import org.example.apiClient.dto.GerichtDTO;
 import org.example.apiClient.dto.RezeptDTO;
-import org.example.apiClient.dto.ZutatenlisteDTO;
+import org.example.apiClient.dto.ZutatenDTO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class RezepteController {
         widthwidthwidthwidthwidthwidth.setPrefHeight(App.bpRoot.heightProperty().get());
     }
 
-    public void buildContent(GerichteDTO gerichteDTO){
+    /*public void buildContent(GerichtDTO gerichteDTO){
         var r = RezeptDTORequest(gerichteDTO.getUniqueId());
         var z = ZutatenlisteDTORequest(gerichteDTO.getUniqueId());
         fillZubereitungsschritteBerceich(r, z);
@@ -53,13 +53,13 @@ public class RezepteController {
 
         return rezeptDTOArrayList;
     }
-    private ArrayList<ZutatenlisteDTO> ZutatenlisteDTORequest(long uniqueGerichteId){
+    private ArrayList<ZutatenDTO> ZutatenlisteDTORequest(long uniqueGerichteId){
         //Placeholder for Response
-        ArrayList<ZutatenlisteDTO> zutatenlisteDTOArrayList = new ArrayList<>();
+        ArrayList<ZutatenDTO> zutatenlisteDTOArrayList = new ArrayList<>();
 
-        ZutatenlisteDTO zutatenlisteDTO1 = new ZutatenlisteDTO(500, "gramm", "Kidney Bohnen");
-        ZutatenlisteDTO zutatenlisteDTO2 = new ZutatenlisteDTO(.1, "kg", "Hühnerfilet");
-        ZutatenlisteDTO zutatenlisteDTO3 = new ZutatenlisteDTO(.5, "liter", "Tomatensoßse");
+        ZutatenDTO zutatenlisteDTO1 = new ZutatenDTO(500, "gramm", "Kidney Bohnen");
+        ZutatenDTO zutatenlisteDTO2 = new ZutatenDTO(.1, "kg", "Hühnerfilet");
+        ZutatenDTO zutatenlisteDTO3 = new ZutatenDTO(.5, "liter", "Tomatensoßse");
 
         zutatenlisteDTOArrayList.add(zutatenlisteDTO1);
         zutatenlisteDTOArrayList.add(zutatenlisteDTO2);
@@ -91,7 +91,7 @@ public class RezepteController {
             //MessartColumn.getColumns().add(zutatenlisteDTO.getMessart());
             //ZutatenColumn.getColumns().add(zutatenlisteDTO.getZutatName());
         });
-    }
+    }*/
 
 
 
