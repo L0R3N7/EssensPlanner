@@ -20,6 +20,7 @@ public class Person {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
+   @Column(unique = true)
    private String email;
    private byte[] password;
    private byte[] uniqueSessionCode;
@@ -128,7 +129,7 @@ public class Person {
       return hash(toHash, randomSalt);
    }
 
-   private byte[] hash(String password, byte[] salt){
+   public static byte[] hash(String password, byte[] salt){
       KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
       SecretKeyFactory factory;
       try {

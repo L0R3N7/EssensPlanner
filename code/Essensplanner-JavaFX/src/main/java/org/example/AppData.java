@@ -12,4 +12,9 @@ public class AppData {
         this.personDTO = restClient.personSignIn(personDTO);
         return this.personDTO != null;
     }
+
+    public boolean logIn(PersonDTO personDTO){
+        this.personDTO = restClient.personLogIn(personDTO);
+        return this.personDTO != null;
+    }
 }

@@ -1,5 +1,6 @@
 package me.workloads.person.logic;
 
+import me.models.PersonDTO;
 import me.workloads.person.Person;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -19,5 +20,10 @@ public class PersonServiceImpl implements PersonService {
         u.generateSessionCode();
         personRepo.add(u);
         return u;
+    }
+
+    @Override
+    public Person validateUser(PersonDTO personDTO) {
+        return this.personRepo.validateUser(personDTO);
     }
 }

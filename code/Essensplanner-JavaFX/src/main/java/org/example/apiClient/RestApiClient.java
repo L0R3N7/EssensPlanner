@@ -30,4 +30,10 @@ public class RestApiClient {
         System.out.println(personDTOResponse.toString());
         return personDTOResponse;
     }
+
+    public PersonDTO personLogIn(PersonDTO p) {
+        PersonDTO personDTO = webResource.path("person").path("login")
+                .type(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).post(PersonDTO.class, p);
+        return personDTO;
+    }
 }

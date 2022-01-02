@@ -30,7 +30,8 @@ public class LogInController {
     public void Login(ActionEvent actionEvent) {
 
         System.out.println("Start Logig In");
-        boolean success = true; //PersonServiceClient.login(new PersonDTO(EMailField.getText(), PasswordField.getText()));
+
+        boolean success = App.appData.logIn(new PersonDTO(EMailField.getText(), PasswordField.getText()));
 
         if (success){
             System.out.println("Weiterleiten");

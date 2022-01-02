@@ -2,6 +2,7 @@ package me.api;
 
 import me.models.PersonDTO;
 import me.models.mapper.Mappings;
+import me.workloads.person.Person;
 import me.workloads.person.logic.PersonService;
 
 import javax.inject.Inject;
@@ -30,6 +31,18 @@ public class PersonResource {
                 Mappings.INSTANCE.personToPersonDTO(
                         this.personService.addPerson(newUser.getEmail(), newUser.getPassword()))
                 ).build();
+    }
+
+    @POST
+    @Path("login")
+    @Transactional
+    public Response validateUser(
+            PersonDTO personDTO
+    ){
+        System.out.println("User: "+personDTO.getEmail()+" is trying to log in");
+        Person person = this.personService.validateUser(personDTO);
+        return ((person != null)?
+                Response.ok(Mappings.INSTANCE.personToPersonDTO(person)):Response.status(404)).build();
     }
 
 
