@@ -16,6 +16,13 @@ public class FavouriteGerichteId implements Serializable {
     public FavouriteGerichteId() {
     }
 
+    public static FavouriteGerichteId create(Person person, Gericht gericht) {
+        FavouriteGerichteId favouriteGerichteId = new FavouriteGerichteId();
+        favouriteGerichteId.setGericht(gericht);
+        favouriteGerichteId.setPerson(person);
+        return favouriteGerichteId;
+    }
+
     public Gericht getGericht() {
         return gericht;
     }

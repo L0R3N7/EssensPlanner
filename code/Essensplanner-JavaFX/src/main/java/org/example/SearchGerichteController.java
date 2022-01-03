@@ -8,10 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.example.apiClient.dto.GerichtDTO;
-import org.example.apiClient.dto.ListGerichtDTO;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchGerichteController {
@@ -49,7 +47,12 @@ public class SearchGerichteController {
             GerichteController controller = (GerichteController) fxmlLoader.getController();
 
             controller.setGerichteDTO(gerichteDTO);
-            //controller.setGerichtFav(gerichteDTO.getFav());
+            var isfav = App.appData.isFavoriteGericht(gerichteDTO.getId());
+            if (isfav){
+                System.out.println("i lika lika");
+            }
+            controller.fav = isfav;
+            controller.setGerichtFav(isfav);
             //controller.setGerichtBeschreibung(gerichteDTO.getDesc());
             controller.setGerichtName(gerichteDTO.getName());
 

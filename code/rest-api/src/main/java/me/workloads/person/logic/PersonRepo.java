@@ -10,4 +10,6 @@ public interface PersonRepo {
     void add(Person u);
 
     Person validateUser(PersonDTO personDTO);
+
+    Person getUser(String email, byte[] uniqueSessionCode);
 }

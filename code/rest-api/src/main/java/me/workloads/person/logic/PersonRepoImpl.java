@@ -31,10 +31,7 @@ public class PersonRepoImpl implements PersonRepo {
 
     @Override
     public Person validateUser(PersonDTO personDTO) {
-        TypedQuery<Person> typedQuery = this.entityManager
-                .createQuery("select p from Person p where p.email = :email", Person.class)
-                .setParameter("email", personDTO.getEmail());
-        Person person = typedQuery.getResultStream().findFirst().orElse(null);
+        Person person = this.findUserByEmail(personDTO.getEmail());
 
         if (person == null){
             return null;
@@ -50,5 +47,28 @@ public class PersonRepoImpl implements PersonRepo {
         }
 
         return null;
+    }
+
+
+    @Override
+    public Person getUser(String email, byte[] uniqueSessionCode) {
+        Person person = findUserByEmail(email);
+        byte[] sessionCode = person.getUniqueSessionCode();;
+        if (Arrays.equals(uniqueSessionCode, sessionCode)){
+            return person;
+        }
+        return null;
+    }
+
+    private Person findUserByEmail(String email){
+        TypedQuery<Person> typedQuery = this.entityManager
+                .createQuery("select p from Person p where p.email = :email", Person.class)
+                .setParameter("email", email);
+        Person person = typedQuery.getResultStream().findFirst().orElse(null);
+
+        if (person == null){
+            return null;
+        }
+        return person;
     }
 }

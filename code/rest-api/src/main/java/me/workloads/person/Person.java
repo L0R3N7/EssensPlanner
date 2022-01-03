@@ -4,6 +4,7 @@ package me.workloads.person;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.yaml.snakeyaml.util.ArrayUtils;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -12,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -101,6 +103,10 @@ public class Person {
 
    public void setTagesplanList(List<Tagesplan> tagesplanList) {
       this.tagesplanList = tagesplanList;
+   }
+
+   public void addFavouriteGerichteList(FavouriteGerichte favouriteGerichte){
+      this.favouriteGerichteList.add(favouriteGerichte);
    }
 
    public static Person create(String email, String password) {

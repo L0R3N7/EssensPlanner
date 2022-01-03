@@ -1,12 +1,17 @@
 package me.api;
 
 import me.models.GerichtDTO;
+import me.models.PersonDTO;
 import me.models.mapper.Mappings;
 import me.workloads.gerichte.Gericht;
 import me.workloads.gerichte.logic.GerichtService;
+import me.workloads.person.FavouriteGerichte;
+import me.workloads.person.Person;
+import me.workloads.person.logic.FavouriteGerichteService;
 import me.workloads.person.logic.PersonService;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,6 +27,8 @@ public class GerichtResource {
     PersonService personService;
     @Inject
     GerichtService gerichtService;
+    @Inject
+    FavouriteGerichteService favouriteGerichteService;
 
     @GET
     @Path("search/{searchString}")
@@ -34,4 +41,50 @@ public class GerichtResource {
         return ((gerichtList.size() > 0)?(Response.ok(gerichtDTOList)):(Response.status(404))).build();
     }
 
+    @POST
+    @Path("isFavorite/{id}")
+    public Response isFavorite(
+            PersonDTO personDTO,
+            @PathParam("id") long gerichtId
+    ){
+        System.out.println("User asks what his favorite Meal is");
+        Person person = personService.getUser(personDTO.getEmail(), Mappings.StringToHash(personDTO.getUniqueSessionCode()));
+
+        if (person == null){
+            return Response.status(404).build();
+        }
+
+        return Response.ok(this.gerichtService.isFavorite(person, gerichtId)).build();
+    }
+
+    @PUT
+    @Path("setFavorite/{id}/{bool}")
+    @Transactional
+    public Response setFavorite(
+            PersonDTO personDTO,
+            @PathParam("id") long gerichtId,
+            @PathParam("bool") boolean fav
+    ){
+        System.out.println("User wanna change his favorite meal");
+        Person person = this.personService.getUser(personDTO.getEmail(), Mappings.StringToHash(personDTO.getUniqueSessionCode()));
+
+        if (person == null){
+            return Response.status(404).build();
+        }
+
+        Gericht gericht = this.gerichtService.getGerichtById(gerichtId);
+
+        FavouriteGerichte favouriteGerichte;
+
+        if (fav){
+            favouriteGerichte = FavouriteGerichte.create(person, gericht);
+            this.favouriteGerichteService.add(favouriteGerichte);
+            this.personService.update(person);
+            this.gerichtService.update(gericht);
+        }else {
+            this.favouriteGerichteService.delete(person, gericht);
+        }
+
+        return Response.ok().build();
+    }
 }

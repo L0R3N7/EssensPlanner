@@ -106,4 +106,8 @@ public class Gericht {
     public void setZutatenList(List<Zutaten> zutatenList) {
         this.zutatenList = zutatenList;
     }
+
+    public void addFavouriteGerichteList(FavouriteGerichte favouriteGerichte) {
+        this.favouriteGerichteList.add(favouriteGerichte);
+    }
 }

@@ -12,6 +12,7 @@ public class AppData {
     private PersonDTO personDTO;
 
 
+    // Person
     public boolean signIn(PersonDTO personDTO){
         this.personDTO = restClient.personSignIn(personDTO);
         return this.personDTO != null;
@@ -22,8 +23,17 @@ public class AppData {
         return this.personDTO != null;
     }
 
+    // Gerichte
     public List<GerichtDTO> searchGerichte(String eingabe){
         return restClient.gerichteSearch(eingabe);
+    }
+
+    public boolean isFavoriteGericht(Long id){
+        return restClient.gerichteIsFavorite(this.personDTO, id);
+    }
+
+    public void setFavoriteGericht(Long id, Boolean b){
+        restClient.gerichteSetFavorite(this.personDTO, id, b);
     }
 
 }

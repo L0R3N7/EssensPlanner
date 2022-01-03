@@ -7,7 +7,7 @@ import java.util.Objects;
 public class PersonDTO implements Serializable {
     private String email;
     private String password;
-    private byte[] uniqueSessionCode;
+    private String[] uniqueSessionCode;
 
     public PersonDTO(String email, String password) {
         this.email = email;
@@ -25,7 +25,7 @@ public class PersonDTO implements Serializable {
         this.password = password;
     }
 
-    public void setUniqueSessionCode(byte[] uniqueSessionCode) {
+    public void setUniqueSessionCode(String[] uniqueSessionCode) {
         this.uniqueSessionCode = uniqueSessionCode;
     }
 
@@ -37,7 +37,7 @@ public class PersonDTO implements Serializable {
         return password;
     }
 
-    public byte[] getUniqueSessionCode() {
+    public String[] getUniqueSessionCode() {
         return uniqueSessionCode;
     }
 

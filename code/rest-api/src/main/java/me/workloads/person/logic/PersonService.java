@@ -9,5 +9,9 @@ public interface PersonService {
 
     Person validateUser(PersonDTO personDTO);
 
-    Person findPersonBySeasionId(String email, byte[] uniqueSessionCode);
+    Boolean validateUserBySeasionId(String email, byte[] uniqueSessionCode);
+
+    Person getUser(String email, byte[] uniqueSessionCode);
+
+    void update(Person person);
 }

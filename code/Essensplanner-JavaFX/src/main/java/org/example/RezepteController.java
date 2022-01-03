@@ -1,20 +1,11 @@
 package org.example;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import org.example.apiClient.dto.GerichtDTO;
-import org.example.apiClient.dto.RezeptDTO;
-import org.example.apiClient.dto.ZutatenDTO;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class RezepteController {
 

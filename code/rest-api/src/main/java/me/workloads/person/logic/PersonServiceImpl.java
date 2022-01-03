@@ -28,7 +28,17 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person findPersonBySeasionId(String email, byte[] uniqueSessionCode) {
-        return null;
+    public Boolean validateUserBySeasionId(String email, byte[] uniqueSessionCode) {
+        return this.personRepo.getUser(email, uniqueSessionCode) != null;
+    }
+
+    @Override
+    public Person getUser(String email, byte[] uniqueSessionCode) {
+        return this.personRepo.getUser(email, uniqueSessionCode);
+    }
+
+    @Override
+    public void update(Person person) {
+        this.personRepo.update(person);
     }
 }

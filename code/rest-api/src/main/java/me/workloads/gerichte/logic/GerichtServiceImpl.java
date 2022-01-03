@@ -2,6 +2,7 @@ package me.workloads.gerichte.logic;
 
 import me.api.GerichtResource;
 import me.workloads.gerichte.Gericht;
+import me.workloads.person.Person;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -16,5 +17,20 @@ public class GerichtServiceImpl implements GerichtService{
     @Override
     public List<Gericht> search(String searchString) {
         return this.gerichtRepo.search(searchString);
+    }
+
+    @Override
+    public boolean isFavorite(Person person, long gerichtId) {
+        return this.gerichtRepo.isFavorite(person,gerichtId);
+    }
+
+    @Override
+    public Gericht getGerichtById(long gerichtId) {
+        return this.gerichtRepo.getGerichtById(gerichtId);
+    }
+
+    @Override
+    public void update(Gericht gericht) {
+        this.gerichtRepo.update(gericht);
     }
 }
