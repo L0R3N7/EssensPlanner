@@ -26,4 +26,9 @@ public class PersonServiceImpl implements PersonService {
     public Person validateUser(PersonDTO personDTO) {
         return this.personRepo.validateUser(personDTO);
     }
+
+    @Override
+    public Person findPersonBySeasionId(String email, byte[] uniqueSessionCode) {
+        return null;
+    }
 }

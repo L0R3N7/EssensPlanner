@@ -8,4 +8,6 @@ public interface PersonService {
     Person addPerson(String email, String password);
 
     Person validateUser(PersonDTO personDTO);
+
+    Person findPersonBySeasionId(String email, byte[] uniqueSessionCode);
 }

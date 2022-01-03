@@ -8,9 +8,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.example.apiClient.dto.GerichtDTO;
+import org.example.apiClient.dto.ListGerichtDTO;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchGerichteController {
 
@@ -33,18 +35,11 @@ public class SearchGerichteController {
         clearGerichte();
 
         //HTTP Request
-        // To Do return Arraylist with GerichteDTO
+        List<GerichtDTO> dtoArrayList = App.appData.searchGerichte(text);
 
-        //Placeholder
-        ArrayList<GerichtDTO> arrayList = new ArrayList<>();
-        GerichtDTO gericht = new GerichtDTO();
-        //gericht.setUniqueId(1);
-        gericht.setName("Food");
-        //gericht.setDesc("Protein 90 g, 3000 kcal");
-        //gericht.setFav(true);
-        arrayList.add(gericht);
-
-        arrayList.forEach(a -> buildGerichte(a));
+        if (dtoArrayList.size() != 0){
+            dtoArrayList.forEach(a -> buildGerichte(a));
+        }
     }
 
     private void buildGerichte(GerichtDTO gerichteDTO){

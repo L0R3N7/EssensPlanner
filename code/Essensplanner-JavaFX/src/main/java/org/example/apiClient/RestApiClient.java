@@ -2,14 +2,19 @@ package org.example.apiClient;
 
 
 import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+import org.example.apiClient.dto.GerichtDTO;
 import org.example.apiClient.dto.PersonDTO;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
+import java.util.List;
 
 
 public class RestApiClient {
@@ -35,5 +40,14 @@ public class RestApiClient {
         PersonDTO personDTO = webResource.path("person").path("login")
                 .type(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).post(PersonDTO.class, p);
         return personDTO;
+    }
+
+    public List<GerichtDTO> gerichteSearch(String eingabe) {
+        return webResource
+                .path("gericht")
+                .path("search")
+                .path(eingabe)
+                .accept(MediaType.APPLICATION_JSON)
+                 .get(new GenericType<List<GerichtDTO>>() {});
     }
 }
