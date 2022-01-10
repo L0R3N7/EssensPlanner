@@ -3,6 +3,7 @@ package org.example;
 import org.example.apiClient.RestApiClient;
 import org.example.apiClient.dto.GerichtDTO;
 import org.example.apiClient.dto.PersonDTO;
+import org.example.apiClient.dto.RezeptDTO;
 
 import java.util.List;
 
@@ -36,4 +37,8 @@ public class AppData {
         restClient.gerichteSetFavorite(this.personDTO, id, b);
     }
 
+    public List<RezeptDTO> getRezeptById(long uniqueGerichteId) {
+        return null;
+        //restClient.rezeptGetById(uniqueGerichteId);
+    }
 }

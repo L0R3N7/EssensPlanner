@@ -1,5 +1,6 @@
 package me.models;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Objects;
 

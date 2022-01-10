@@ -74,4 +74,7 @@ public class RestApiClient {
                 .put(personDTO);
     }
 
+    public void rezeptGetById(long uniqueGerichteId) {
+
+    }
 }

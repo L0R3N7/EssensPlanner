@@ -9,12 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.charset.*;
-import java.util.Arrays;
-import java.util.stream.IntStream;
 
 @Mapper
 public interface Mappings {

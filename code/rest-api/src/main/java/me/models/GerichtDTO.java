@@ -4,14 +4,34 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class GerichtDTO implements Serializable {
-    private final Long id;
-    private final String ImageUrl;
-    private final String Name;
+    private  Long id;
+    private  String ImageUrl;
+    private  String Name;
+    private  String rezept;
 
-    public GerichtDTO(Long id, String imageUrl, String name) {
+    public GerichtDTO(Long id, String imageUrl, String name, String rezept) {
         this.id = id;
         ImageUrl = imageUrl;
         Name = name;
+        this.rezept = rezept;
+    }
+
+    public GerichtDTO(){}
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setRezept(String rezept) {
+        this.rezept = rezept;
     }
 
     public Long getId() {
@@ -26,6 +46,10 @@ public class GerichtDTO implements Serializable {
         return Name;
     }
 
+    public String getRezept() {
+        return rezept;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,12 +57,13 @@ public class GerichtDTO implements Serializable {
         GerichtDTO entity = (GerichtDTO) o;
         return Objects.equals(this.id, entity.id) &&
                 Objects.equals(this.ImageUrl, entity.ImageUrl) &&
-                Objects.equals(this.Name, entity.Name);
+                Objects.equals(this.Name, entity.Name) &&
+                Objects.equals(this.rezept, entity.rezept);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ImageUrl, Name);
+        return Objects.hash(id, ImageUrl, Name, rezept);
     }
 
     @Override
@@ -46,6 +71,7 @@ public class GerichtDTO implements Serializable {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
                 "ImageUrl = " + ImageUrl + ", " +
-                "Name = " + Name + ")";
+                "Name = " + Name + ", " +
+                "rezept = " + rezept + ")";
     }
 }

@@ -2,7 +2,6 @@ package me.workloads.gerichte;
 
 import me.workloads.person.FavouriteGerichte;
 import me.workloads.person.Tagesplan;
-import me.workloads.rezept.Rezept;
 import me.workloads.zutaten.Zutaten;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -18,6 +17,8 @@ public class Gericht {
     Long id;
     String ImageUrl;
     String Name;
+    @Column(length = 1200)
+    String rezept;
 
     @OneToMany(
             mappedBy = "id.gericht",
@@ -33,12 +34,7 @@ public class Gericht {
     @OnDelete(action = OnDeleteAction.CASCADE)
     List<FavouriteGerichte> favouriteGerichteList;
 
-    @OneToMany(
-            mappedBy = "id.gericht",
-            cascade = CascadeType.ALL
-    )
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    List<Rezept> rezeptList = new ArrayList<>();
+
 
     @OneToMany(
             mappedBy = "id.gericht",
@@ -91,12 +87,12 @@ public class Gericht {
         Name = name;
     }
 
-    public List<Rezept> getRezeptList() {
-        return rezeptList;
+    public String getRezept() {
+        return rezept;
     }
 
-    public void setRezeptList(List<Rezept> rezeptList) {
-        this.rezeptList = rezeptList;
+    public void setRezept(String rezept) {
+        this.rezept = rezept;
     }
 
     public List<Zutaten> getZutatenList() {

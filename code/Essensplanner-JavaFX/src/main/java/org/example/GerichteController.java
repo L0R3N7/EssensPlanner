@@ -45,7 +45,7 @@ public class GerichteController {
                 Parent parent = fxmlLoader.load();
 
                 RezepteController controller = (RezepteController) fxmlLoader.getController();
-                //controller.buildContent(gerichteDTO);
+                controller.buildContent(gerichteDTO);
 
                 App.setRoot(parent);
             }catch (IOException e){
