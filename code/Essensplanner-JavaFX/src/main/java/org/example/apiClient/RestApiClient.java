@@ -77,4 +77,6 @@ public class RestApiClient {
     public void rezeptGetById(long uniqueGerichteId) {
 
     }
+
+
 }

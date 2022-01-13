@@ -15,4 +15,5 @@ public interface GerichtService {
     Gericht getGerichtById(long gerichtId);
 
     void update(Gericht gericht);
+
 }

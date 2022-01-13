@@ -41,6 +41,18 @@ public class GerichtResource {
         return ((gerichtList.size() > 0)?(Response.ok(gerichtDTOList)):(Response.status(404))).build();
     }
 
+    /*@GET
+    @Path("search/{searchString}")
+    public Response search(
+            @PathParam("searchString") String searchString,
+            @QueryParam("fav") boolean fav
+            ){
+        List<Gericht> gerichtList = this.gerichtService.search(searchString, fav);
+        List<GerichtDTO> gerichtDTOList = gerichtList.stream().map(Mappings.INSTANCE::gerichtToGerichtDTO).collect(Collectors.toList());
+
+        return ((gerichtList.size() > 0)?(Response.ok(gerichtDTOList)):(Response.status(404))).build();
+    }*/
+
     @POST
     @Path("isFavorite/{id}")
     public Response isFavorite(

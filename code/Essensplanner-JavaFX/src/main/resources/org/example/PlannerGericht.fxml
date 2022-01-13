@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<GridPane fx:id="root" prefHeight="62.0" prefWidth="129.0" styleClass="bg-ele" stylesheets="@css/javafx.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PlannerGerichtConroller">
+   <columnConstraints>
+      <ColumnConstraints fx:id="labelbox" halignment="CENTER" minWidth="10.0" prefWidth="80.0" />
+      <ColumnConstraints fx:id="iconboxbox" hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <HBox fx:id="iconbox" alignment="CENTER" prefHeight="100.0" prefWidth="73.0" GridPane.columnIndex="1" />
+      <Label fx:id="GerichtName" contentDisplay="CENTER" styleClass="fill-color" stylesheets="@css/javafx.css" text="Label" textAlignment="CENTER" />
+   </children>
+</GridPane>

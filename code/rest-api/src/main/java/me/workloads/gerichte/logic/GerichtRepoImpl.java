@@ -1,11 +1,9 @@
 package me.workloads.gerichte.logic;
 
 import me.workloads.gerichte.Gericht;
-import me.workloads.person.FavouriteGerichte;
 import me.workloads.person.Person;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;

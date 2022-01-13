@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import org.example.apiClient.RestApiClient;
 import org.example.apiClient.dto.PersonDTO;
 
@@ -30,6 +31,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
 
     public static void setRoot(String fxml) throws IOException {
         Parent p = loadFXML(fxml);

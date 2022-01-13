@@ -1,8 +1,8 @@
 package me.workloads.gerichte.logic;
 
-import me.api.GerichtResource;
 import me.workloads.gerichte.Gericht;
 import me.workloads.person.Person;
+import me.workloads.person.logic.PersonRepo;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,6 +13,8 @@ public class GerichtServiceImpl implements GerichtService{
 
     @Inject
     private GerichtRepo gerichtRepo;
+    @Inject
+    private PersonRepo personRepo;
 
     @Override
     public List<Gericht> search(String searchString) {

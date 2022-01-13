@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class LebensmittelDTO implements Serializable {
-    @NotNull
     private final String name;
 
     public LebensmittelDTO(String name) {
