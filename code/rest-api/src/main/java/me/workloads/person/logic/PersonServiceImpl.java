@@ -1,6 +1,7 @@
 package me.workloads.person.logic;
 
 import me.models.PersonDTO;
+import me.models.mapper.Mappings;
 import me.workloads.person.Person;
 
 import javax.enterprise.context.ApplicationScoped;

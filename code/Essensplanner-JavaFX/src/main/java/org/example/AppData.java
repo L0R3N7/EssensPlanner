@@ -16,11 +16,13 @@ public class AppData {
     // Person
     public boolean signIn(PersonDTO personDTO){
         this.personDTO = restClient.personSignIn(personDTO);
+        App.menubarController.showHidde(this.personDTO != null);
         return this.personDTO != null;
     }
 
     public boolean logIn(PersonDTO personDTO){
         this.personDTO = restClient.personLogIn(personDTO);
+        App.menubarController.showHidde(this.personDTO != null);
         return this.personDTO != null;
     }
 
@@ -40,5 +42,10 @@ public class AppData {
     public List<RezeptDTO> getRezeptById(long uniqueGerichteId) {
         return null;
         //restClient.rezeptGetById(uniqueGerichteId);
+    }
+
+    public void logout() {
+        this.personDTO = null;
+        App.menubarController.showHidde(false);
     }
 }

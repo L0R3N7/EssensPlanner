@@ -3,6 +3,7 @@ package org.example.apiClient;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.GenericType;
+import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
@@ -77,6 +78,4 @@ public class RestApiClient {
     public void rezeptGetById(long uniqueGerichteId) {
 
     }
-
-
 }

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 
@@ -16,6 +17,18 @@ public class MenubarController {
     public MenuItem searchgerichte;
     public MenuItem planner;
     public MenuItem logout;
+    public Menu user;
+
+    public void showHidde(boolean isLoggedin){
+        login.setDisable(isLoggedin);
+        signin.setDisable(isLoggedin);
+
+        forgotpassword.setDisable(!isLoggedin);
+        searchgerichte.setDisable(!isLoggedin);
+        planner.setDisable(!isLoggedin);
+        user.setDisable(!isLoggedin);
+        logout.setDisable(!isLoggedin);
+    }
 
     @FXML
     private void initialize() {
@@ -53,6 +66,7 @@ public class MenubarController {
             @Override
             public void handle(ActionEvent actionEvent) {
                 // logout Action
+                App.appData.logout();
                 transferTo("LogIn");
             }
         });

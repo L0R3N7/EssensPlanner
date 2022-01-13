@@ -45,15 +45,4 @@ public class PersonResource {
                 Response.ok(Mappings.INSTANCE.personToPersonDTO(person)):Response.status(404)).build();
     }
 
-
-
-
-
-    /*@POST
-    @Path("login")
-    public Response validateUser)(
-            UserDTO validUser
-            ){
-        User u =
-    }*/
 }

@@ -20,16 +20,21 @@ public class App extends Application {
     private static Scene scene;
     public static BorderPane bpRoot = new BorderPane();
     public static AppData appData = new AppData();
+    public static MenubarController menubarController;
 
 
     @Override
     public void start(Stage stage) throws IOException {
-        bpRoot.setTop(loadFXML("menubar"));
-        setRoot("LogIn");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menubar.fxml"));
+        bpRoot.setTop(fxmlLoader.load());
+        menubarController = (MenubarController) fxmlLoader.getController();
+        menubarController.showHidde(false);
 
         scene = new Scene(bpRoot, 640, 480);
         stage.setScene(scene);
         stage.show();
+
+        setRoot("LogIn");
     }
 
 

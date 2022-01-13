@@ -14,4 +14,5 @@ public interface PersonService {
     Person getUser(String email, byte[] uniqueSessionCode);
 
     void update(Person person);
+
 }
