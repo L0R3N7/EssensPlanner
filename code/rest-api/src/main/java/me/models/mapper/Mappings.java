@@ -13,7 +13,6 @@ import java.nio.charset.*;
 
 @Mapper
 public interface Mappings {
-    Charset charset = StandardCharsets.UTF_8;
     Mappings INSTANCE = Mappers.getMapper( Mappings.class );
 
     @Mapping(source = "password", target = "password", qualifiedByName = "HashToNull")
@@ -38,23 +37,10 @@ public interface Mappings {
     }
 
     public static byte[] StringToHash (String[]  value) {
-
         byte[] temp = new byte[value.length];
         for (int i = 0; i < value.length; i++){
             temp[i] = Byte.valueOf(value[i]);
         }
         return temp;
-
-
-        /*CharsetEncoder encoder = charset.newEncoder()
-                .onMalformedInput(CodingErrorAction.IGNORE)
-                .onUnmappableCharacter(CodingErrorAction.REPLACE)
-                .replaceWith(new byte[] { 0 });
-        try {
-            return encoder.encode(CharBuffer.wrap(value)).array();
-        } catch (CharacterCodingException e) {
-            e.printStackTrace();
-        }
-        return null;*/
     }
 }

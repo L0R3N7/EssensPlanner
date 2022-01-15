@@ -7,4 +7,5 @@ Fleisch und Erdnüsse wieder hinzugeben. Mit Wein ablöschen, aufkochen lassen u
 
 Auf Reis servieren.'),
        ('Käsekräner', null ),
-        ('Leckeres zeug', null );
+        ('Leckeres zeug', null ),
+       ('Gong Be', null);

@@ -1,6 +1,7 @@
 package org.example;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,10 +44,15 @@ public class PlannerController {
 
     public Label[] wocheDatum;
 
-    List<Pair<Parent, PlannerGerichtConroller>> gerichtObjectListe = new ArrayList<>();
+    List<Pair<Parent, PlannerGerichtConroller>>[] gerichtObjectListe = new ArrayList[8];
 
     @FXML
     private void initialize() {
+        for (int i = 0; i < gerichtObjectListe.length; i++){
+            gerichtObjectListe[i] = new ArrayList<>();
+        }
+
+
         // Kalender
         wocheDatum = new Label[]{
                 moDatum,
@@ -85,59 +91,88 @@ public class PlannerController {
     }
 
     private void initDrag(VBox[] vBoxes){
-        for (VBox vBox : vBoxes){
-            vBox.setOnDragOver(new EventHandler<DragEvent>() {
+        for (int i = 0; i < vBoxes.length; i++){
+            final int index = i;
+            vBoxes[i].setOnDragOver(new EventHandler<DragEvent>() {
                 @Override
                 public void handle(DragEvent dragEvent) {
                     dragEvent.acceptTransferModes(TransferMode.COPY_OR_MOVE);
                 }
             });
-            vBox.setOnDragDropped(new EventHandler<DragEvent>() {
+            vBoxes[i].setOnDragDropped(new EventHandler<DragEvent>() {
                 @Override
                 public void handle(DragEvent dragEvent) {
                     Dragboard d = dragEvent.getDragboard();
-                    vBox.getChildren().add(gerichtObjectListe.get(Integer.valueOf(d.getString())).getKey());
+                    String[] result = d.getString().split(",");
+                    int whichTable = Integer.valueOf(result[0]);
+                    int tableIndex = Integer.valueOf(result[1]);
+
+                    System.out.println("copy element from "+result[0] +"at"+result[1]+" an do stuff at "+index);
+
+                    if(whichTable == 7){
+                        PlannerGerichtConroller draggedElement = gerichtObjectListe[whichTable].get(tableIndex).getValue();
+                        //// copy dragged Element
+                        // create GerichtObject and fill with data
+                        Pair<Parent, PlannerGerichtConroller> temp = createGerichtObject(draggedElement.getGerichtDTO(), index);
+                        // add to Vbox
+                        vBoxes[index].getChildren().add(temp.getKey());
+                        // add to list
+                        gerichtObjectListe[index].add(temp);
+                        // add drag
+                        temp.getKey().setOnDragDetected(mouseEvent -> {
+                                        Dragboard db = temp.getKey().startDragAndDrop(TransferMode.ANY);
+                                        ClipboardContent clipboardContent = new ClipboardContent();
+                                        clipboardContent.putString(String.valueOf(temp.getValue().getInWhichVbox())+","+String.valueOf(gerichtObjectListe[temp.getValue().getInWhichVbox()].indexOf(temp)));
+                                        db.setContent(clipboardContent);
+                                });
+
+                        System.out.println("1 At"+index+" "+gerichtObjectListe[index].indexOf(temp));
+                    }else {
+                        if (gerichtObjectListe[index].indexOf(gerichtObjectListe[whichTable].get(tableIndex)) != -1){
+                            System.out.println("No duplication please");
+                            return;
+                        }else {
+                            Pair<Parent, PlannerGerichtConroller> temp = gerichtObjectListe[whichTable].remove(tableIndex);
+                            temp.getValue().setInWhichVbox(index);
+                            vBoxes[index].getChildren().add(temp.getKey());
+                            gerichtObjectListe[index].add(temp);
+                            System.out.println("2 At"+index+" "+gerichtObjectListe[index].indexOf(temp));
+                        }
+                    }
                 }
             });
         }
     }
 
-    // Search Funktion
+    // Such Funktion
     // Aufbauen der Gerichte Element
-    // Dropable
+    // Initialisiert Drag
     public void loadGerichte() {
         favGerichtList.getChildren().remove(0, favGerichtList.getChildren().size());
-        gerichtObjectListe.clear();
+        gerichtObjectListe[7].clear();
 
         List<GerichtDTO> gerichtDTOList = App.appData.searchGerichte(gerichteSearch.getText());
 
-        try {
-            for (GerichtDTO gerichtDTO : gerichtDTOList){
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PlannerGericht.fxml"));
-                Parent parent = fxmlLoader.load();
-                PlannerGerichtConroller plannerGerichtConroller = (PlannerGerichtConroller) fxmlLoader.getController();
+        for (GerichtDTO gerichtDTO : gerichtDTOList){
+            Pair<Parent, PlannerGerichtConroller> temp = this.createGerichtObject(gerichtDTO, 7);
+            if (temp == null){continue;}
 
-                favGerichtList.getChildren().add(parent);
-                plannerGerichtConroller.setGerichtDTO(gerichtDTO);
-                plannerGerichtConroller.setRootSize(favGerichtList.getWidth(), 20);
+            favGerichtList.getChildren().add(temp.getKey());
+            temp.getValue().setRootSize(favGerichtList.getWidth(), 20);
+            gerichtObjectListe[7].add(temp);
 
-                gerichtObjectListe.add(new Pair<Parent, PlannerGerichtConroller>(parent, plannerGerichtConroller));
-
-                parent.setOnDragDetected(
-                        new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent mouseEvent) {
-                                Dragboard db = parent.startDragAndDrop(TransferMode.ANY);
-                                ClipboardContent clipboardContent = new ClipboardContent();
-                                clipboardContent.putString(String.valueOf(gerichtObjectListe.size()-1));
-                                db.setContent(clipboardContent);
-                            }
+            temp.getKey().setOnDragDetected(
+                    new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            Dragboard db = temp.getKey().startDragAndDrop(TransferMode.ANY);
+                            ClipboardContent clipboardContent = new ClipboardContent();
+                            clipboardContent.putString(String.valueOf(temp.getValue().getInWhichVbox())+","+String.valueOf(gerichtObjectListe[temp.getValue().getInWhichVbox()].indexOf(temp)));
+                            db.setContent(clipboardContent);
                         }
-                );
+                    }
+            );
 
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -149,5 +184,19 @@ public class PlannerController {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    private Pair<Parent, PlannerGerichtConroller> createGerichtObject(GerichtDTO gerichtDTO, int inWhichVbox){
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PlannerGericht.fxml"));
+        try {
+            Parent parent = fxmlLoader.load();
+            PlannerGerichtConroller plannerGerichtConroller = (PlannerGerichtConroller) fxmlLoader.getController();
+            plannerGerichtConroller.setInWhichVbox(inWhichVbox);
+            plannerGerichtConroller.setGerichtDTO(gerichtDTO);
+            return new Pair<Parent, PlannerGerichtConroller>(parent, plannerGerichtConroller);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
