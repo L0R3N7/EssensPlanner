@@ -49,9 +49,10 @@ public class PlannerGerichtConroller {
         trashPane.getChildren().add(trash);
         rezeptPane.getChildren().add(rezept);
 
-        rezeptPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+        trashPane.setOnMouseClicked(mouseEvent -> {
+
+        });
+        rezeptPane.setOnMouseClicked(mouseEvent ->  {
                 System.out.println("Weiterleiten zu Rezepte");
                 try{
                     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Rezepte.fxml"));
@@ -64,8 +65,7 @@ public class PlannerGerichtConroller {
                 }catch (IOException e){
                     e.printStackTrace();
                 }
-            }
-        });
+            });
 
         addSvg(new Pane[]{rezeptPane});
     }

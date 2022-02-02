@@ -32,6 +32,8 @@ public class MenubarController {
 
     @FXML
     private void initialize() {
+        forgotpassword.setVisible(false);
+
         login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {

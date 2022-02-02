@@ -33,13 +33,6 @@ public class Person {
            cascade = CascadeType.ALL
    )
    @OnDelete(action = OnDeleteAction.CASCADE)
-   List<Tagesplan> tagesplanList;
-
-   @OneToMany(
-           mappedBy = "id.person",
-           cascade = CascadeType.ALL
-   )
-   @OnDelete(action = OnDeleteAction.CASCADE)
    List<FavouriteGerichte> favouriteGerichteList;
 
 
@@ -97,17 +90,21 @@ public class Person {
       this.favouriteGerichteList = favouriteGerichteList;
    }
 
-   public List<Tagesplan> getTagesplanList() {
+/*   public List<Tagesplan> getTagesplanList() {
       return tagesplanList;
    }
 
    public void setTagesplanList(List<Tagesplan> tagesplanList) {
       this.tagesplanList = tagesplanList;
-   }
+   }*/
 
    public void addFavouriteGerichteList(FavouriteGerichte favouriteGerichte){
       this.favouriteGerichteList.add(favouriteGerichte);
    }
+
+/*   public void addTagesplanList(Tagesplan tagesplan){
+      this.tagesplanList.add(tagesplan);
+   }*/
 
    public static Person create(String email, String password) {
          Person newPerson = new Person();

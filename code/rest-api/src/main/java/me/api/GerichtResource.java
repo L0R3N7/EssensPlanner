@@ -7,7 +7,7 @@ import me.workloads.gerichte.Gericht;
 import me.workloads.gerichte.logic.GerichtService;
 import me.workloads.person.FavouriteGerichte;
 import me.workloads.person.Person;
-import me.workloads.person.logic.FavouriteGerichteService;
+import me.workloads.person.logic.favourite.FavouriteGerichteService;
 import me.workloads.person.logic.PersonService;
 
 import javax.inject.Inject;
@@ -40,18 +40,6 @@ public class GerichtResource {
 
         return ((gerichtList.size() > 0)?(Response.ok(gerichtDTOList)):(Response.status(404))).build();
     }
-
-    /*@GET
-    @Path("search/{searchString}")
-    public Response search(
-            @PathParam("searchString") String searchString,
-            @QueryParam("fav") boolean fav
-            ){
-        List<Gericht> gerichtList = this.gerichtService.search(searchString, fav);
-        List<GerichtDTO> gerichtDTOList = gerichtList.stream().map(Mappings.INSTANCE::gerichtToGerichtDTO).collect(Collectors.toList());
-
-        return ((gerichtList.size() > 0)?(Response.ok(gerichtDTOList)):(Response.status(404))).build();
-    }*/
 
     @POST
     @Path("isFavorite/{id}")

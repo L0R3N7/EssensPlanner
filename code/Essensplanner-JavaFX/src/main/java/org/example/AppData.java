@@ -1,10 +1,9 @@
 package org.example;
 
 import org.example.apiClient.RestApiClient;
-import org.example.apiClient.dto.GerichtDTO;
-import org.example.apiClient.dto.PersonDTO;
-import org.example.apiClient.dto.RezeptDTO;
+import org.example.apiClient.dto.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class AppData {
@@ -26,6 +25,11 @@ public class AppData {
         return this.personDTO != null;
     }
 
+    public void logout() {
+        this.personDTO = null;
+        App.menubarController.showHidde(false);
+    }
+
     // Gerichte
     public List<GerichtDTO> searchGerichte(String eingabe){
         return restClient.gerichteSearch(eingabe);
@@ -44,8 +48,22 @@ public class AppData {
         //restClient.rezeptGetById(uniqueGerichteId);
     }
 
-    public void logout() {
-        this.personDTO = null;
-        App.menubarController.showHidde(false);
+    // Tagesplan
+    public void addPlannedWeek(List<TagesplanDTO> tagesplanDTOS){
+        System.out.println("gonna save the data");
+
+        tagesplanDTOS.get(0).setIdPersonEmail(this.personDTO.getEmail());
+        tagesplanDTOS.get(0).setIdPersonUniqueSessionCode(this.personDTO.getUniqueSessionCode());
+        restClient.addPlannedWeek(tagesplanDTOS);
     }
+
+    public void deletePlannedWeek(LocalDate localDate){
+        restClient.deletePlannedWeek(Mappings.LocalDateToString(localDate), this.personDTO);
+    }
+
+    public List<TagesplanDTOo> getPlannedWeek(LocalDate localDate){
+        return restClient.getPlannedWeek(Mappings.LocalDateToString(localDate), this.personDTO);
+    }
+
+
 }

@@ -30,7 +30,7 @@ public class App extends Application {
         menubarController = (MenubarController) fxmlLoader.getController();
         menubarController.showHidde(false);
 
-        scene = new Scene(bpRoot, 640, 480);
+        scene = new Scene(bpRoot, 640*2, 480*2);
         stage.setScene(scene);
         stage.show();
 

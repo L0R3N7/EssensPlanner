@@ -1,7 +1,6 @@
 package me.workloads.gerichte;
 
 import me.workloads.person.FavouriteGerichte;
-import me.workloads.person.Tagesplan;
 import me.workloads.zutaten.Zutaten;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -25,13 +24,6 @@ public class Gericht {
             cascade = CascadeType.ALL
     )
     @OnDelete(action = OnDeleteAction.CASCADE)
-    List<Tagesplan> tagesplanList = new ArrayList<>();
-
-    @OneToMany(
-            mappedBy = "id.gericht",
-            cascade = CascadeType.ALL
-    )
-    @OnDelete(action = OnDeleteAction.CASCADE)
     List<FavouriteGerichte> favouriteGerichteList;
 
 
@@ -45,14 +37,6 @@ public class Gericht {
 
 
     public Gericht() {
-    }
-
-    public List<Tagesplan> getTagesplanList() {
-        return tagesplanList;
-    }
-
-    public void setTagesplanList(List<Tagesplan> tagesplanList) {
-        this.tagesplanList = tagesplanList;
     }
 
     public List<FavouriteGerichte> getFavouriteGerichteList() {

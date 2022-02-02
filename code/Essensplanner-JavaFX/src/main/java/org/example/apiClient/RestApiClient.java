@@ -3,12 +3,13 @@ package org.example.apiClient;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.GenericType;
-import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import org.example.apiClient.dto.GerichtDTO;
 import org.example.apiClient.dto.PersonDTO;
+import org.example.apiClient.dto.TagesplanDTO;
+import org.example.apiClient.dto.TagesplanDTOo;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
 import javax.ws.rs.core.MediaType;
@@ -76,6 +77,34 @@ public class RestApiClient {
     }
 
     public void rezeptGetById(long uniqueGerichteId) {
+    }
 
+    public void addPlannedWeek(List<TagesplanDTO> tagesplanDTOS) {
+        webResource
+                .path("tagesplan")
+                .path("week")
+                .accept(MediaType.APPLICATION_JSON)
+                .type(MediaType.APPLICATION_JSON)
+                .post(tagesplanDTOS);
+    }
+
+    public void deletePlannedWeek(String localDateToString, PersonDTO personDTO) {
+        webResource
+                .path("tagesplan")
+                .path("week")
+                .path(localDateToString)
+                .type(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .delete(personDTO);
+    }
+
+    public List<TagesplanDTOo> getPlannedWeek(String localDateToString, PersonDTO personDTO) {
+        return webResource
+                .path("tagesplan")
+                .path("week")
+                .path(localDateToString)
+                .type(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .post(new GenericType<List<TagesplanDTOo>>() {}, personDTO);
     }
 }

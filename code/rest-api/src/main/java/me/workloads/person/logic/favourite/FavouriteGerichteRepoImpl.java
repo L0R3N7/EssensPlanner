@@ -1,4 +1,4 @@
-package me.workloads.person.logic;
+package me.workloads.person.logic.favourite;
 
 import me.workloads.gerichte.Gericht;
 import me.workloads.person.FavouriteGerichte;
@@ -7,8 +7,6 @@ import me.workloads.person.Person;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 @ApplicationScoped
 public class FavouriteGerichteRepoImpl implements FavouriteGerichteRepo{

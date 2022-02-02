@@ -96,7 +96,7 @@
                         <configuration>
                             <mainClass>org.example.App</mainClass>
                             <options>
-                                <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8123</option>
+                                <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8124</option>
                             </options>
                         </configuration>
                     </execution>

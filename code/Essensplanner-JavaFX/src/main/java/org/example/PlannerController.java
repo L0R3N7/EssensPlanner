@@ -1,7 +1,6 @@
 package org.example;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +10,9 @@ import javafx.scene.input.*;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import org.example.apiClient.dto.GerichtDTO;
+import org.example.apiClient.dto.Mappings;
+import org.example.apiClient.dto.TagesplanDTO;
+import org.example.apiClient.dto.TagesplanDTOo;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -18,6 +20,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlannerController {
     public SplitPane root;
@@ -48,6 +51,12 @@ public class PlannerController {
 
     @FXML
     private void initialize() {
+        System.out.println("get Data");
+        for (TagesplanDTOo tagesplanDTOo : App.appData.getPlannedWeek(kalenderDate)){
+            System.out.println("data");
+        }
+
+
         for (int i = 0; i < gerichtObjectListe.length; i++){
             gerichtObjectListe[i] = new ArrayList<>();
         }
@@ -66,7 +75,6 @@ public class PlannerController {
 
         datumEingabe.valueProperty().addListener((ov, oldValue, newValue) -> {
             kalenderDate = newValue.with(DayOfWeek.MONDAY);
-
             writeDatums(kalenderDate);
         });
 
@@ -118,6 +126,11 @@ public class PlannerController {
                         vBoxes[index].getChildren().add(temp.getKey());
                         // add to list
                         gerichtObjectListe[index].add(temp);
+                        // add delete
+                        temp.getValue().trashPane.setOnMouseClicked(mouseEvent -> {
+                            gerichtObjectListe[temp.getValue().getInWhichVbox()].remove(temp);
+                            vBoxes[temp.getValue().getInWhichVbox()].getChildren().remove(temp.getKey());
+                        });
                         // add drag
                         temp.getKey().setOnDragDetected(mouseEvent -> {
                                         Dragboard db = temp.getKey().startDragAndDrop(TransferMode.ANY);
@@ -138,6 +151,14 @@ public class PlannerController {
                             gerichtObjectListe[index].add(temp);
                             System.out.println("2 At"+index+" "+gerichtObjectListe[index].indexOf(temp));
                         }
+                    }
+
+                    // Save changed Data
+                    savePlannedWeek();
+
+                    // Update Date
+                    for (TagesplanDTOo tagesplanDTO : App.appData.getPlannedWeek(kalenderDate)){
+                        System.out.println(tagesplanDTO.getGerichteListe().get(0).getGerichtId());
                     }
                 }
             });
@@ -198,5 +219,20 @@ public class PlannerController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    //sends data from kalender to the server to save them
+    private void savePlannedWeek(){
+        List<TagesplanDTO> tagesplanDTOS = new ArrayList<>();
+
+        for (int i = 0; i < 7; i++){
+            TagesplanDTO tagesplanDTO = new TagesplanDTO();
+            tagesplanDTO.setIdLocalDate(Mappings.LocalDateToString(kalenderDate.plusDays(i)));
+            tagesplanDTO.setGerichtListIds(gerichtObjectListe[i].stream().map(parentPlannerGerichtConrollerPair -> parentPlannerGerichtConrollerPair.getValue().getGerichtDTO().getId()).collect(Collectors.toList()));
+            tagesplanDTOS.add(tagesplanDTO);
+        }
+
+        App.appData.deletePlannedWeek(kalenderDate);
+        App.appData.addPlannedWeek(tagesplanDTOS);
     }
 }

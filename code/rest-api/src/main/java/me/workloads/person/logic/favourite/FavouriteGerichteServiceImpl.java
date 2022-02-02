@@ -1,4 +1,4 @@
-package me.workloads.person.logic;
+package me.workloads.person.logic.favourite;
 
 import me.workloads.gerichte.Gericht;
 import me.workloads.person.FavouriteGerichte;

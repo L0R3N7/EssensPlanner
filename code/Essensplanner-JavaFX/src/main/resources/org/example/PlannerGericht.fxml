@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-
 
 <GridPane fx:id="root" prefHeight="62.0" prefWidth="129.0" styleClass="bg-ele" stylesheets="@css/javafx.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PlannerGerichtConroller">
    <columnConstraints>
@@ -16,7 +16,10 @@
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <HBox fx:id="iconbox" alignment="CENTER" prefHeight="100.0" prefWidth="73.0" GridPane.columnIndex="1" />
+      <HBox fx:id="iconbox" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="73.0" GridPane.columnIndex="1" />
       <Label fx:id="GerichtName" contentDisplay="CENTER" styleClass="fill-color" stylesheets="@css/javafx.css" text="Label" textAlignment="CENTER" />
    </children>
+   <padding>
+      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+   </padding>
 </GridPane>

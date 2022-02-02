@@ -7,50 +7,38 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Embeddable
 public class TagesplanId implements Serializable {
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
-    @ManyToOne
-    Gericht gericht;
-    @ManyToOne
-    Person person;
-    Date date;
+    Long personId;
+    LocalDate localDate;
 
     public TagesplanId() {
     }
 
-    public Long getId() {
-        return id;
+    public static TagesplanId create(Long personId, LocalDate dateTemp) {
+        TagesplanId tagesplanId = new TagesplanId();
+        tagesplanId.setLocalDate(dateTemp);
+        tagesplanId.setPersonId(personId);
+        return tagesplanId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+
+    public Long getPersonId() {
+        return personId;
     }
 
-    public Gericht getGericht() {
-        return gericht;
+    public void setPersonId(Long personId) {
+        this.personId = personId;
     }
 
-    public void setGericht(Gericht gericht) {
-        this.gericht = gericht;
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 }

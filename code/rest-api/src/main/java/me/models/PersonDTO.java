@@ -19,11 +19,6 @@ public class PersonDTO implements Serializable {
     public PersonDTO() {
     }
 
-    /*public PersonDTO(Person person){
-        this.email = person.getEmail();
-        this.uniqueSessionCode = person.getUniqueSessionCode();
-    }*/
-
     public void setEmail(String email) {
         this.email = email;
     }
