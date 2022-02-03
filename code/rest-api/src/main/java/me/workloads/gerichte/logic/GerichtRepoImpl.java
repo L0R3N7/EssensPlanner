@@ -48,4 +48,14 @@ public class GerichtRepoImpl implements GerichtRepo{
     public void update(Gericht gericht) {
         this.entityManager.merge(gericht);
     }
+
+
+    /*@Override
+    public Gericht getGerichtByIds(List<Long> ids) {
+        var query = this.entityManager
+                .createQuery("select g from Gericht g where g.id in :ids", Gericht.class)
+                .setParameter("ids", ids);
+        return query.getResultList();
+    }*/
+
 }

@@ -35,4 +35,5 @@ public class GerichtServiceImpl implements GerichtService{
     public void update(Gericht gericht) {
         this.gerichtRepo.update(gericht);
     }
+
 }

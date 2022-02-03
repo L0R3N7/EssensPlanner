@@ -1,15 +1,13 @@
 package me.api;
 
-import me.models.GerichtDTO;
 import me.models.PersonDTO;
 import me.models.TagesplanDTO;
-import me.models.TagesplanDTOo;
+import me.models.TagesplanResult;
 import me.models.mapper.Mappings;
 import me.workloads.person.Person;
 import me.workloads.person.Tagesplan;
 import me.workloads.person.logic.PersonService;
 import me.workloads.person.logic.TagesPlanService;
-import org.mapstruct.Mapping;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -18,9 +16,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 @Path("tagesplan")
 @Produces(MediaType.APPLICATION_JSON)
@@ -41,12 +38,18 @@ public class TagesPlanResource {
         if (person == null){
             return Response.status(404).build();
         }
+
+        System.out.println(person.getEmail());
         LocalDate localDate = Mappings.StringToLocalDate(date).with(DayOfWeek.MONDAY);
 
         List<Tagesplan> weekPlan = this.tagesPlanService.getWeek(localDate, person.getId());
-        List<TagesplanDTOo> weekPlanDto = Mappings.INSTANCE.tagesplanToTageslplanDtoo(weekPlan);
+        List<TagesplanResult> plannedWeekResult = weekPlan.stream().map(tagesplan -> {
+            return Mappings.INSTANCE.TagesplanToTagesplanresult(tagesplan);
+        }).collect(Collectors.toList());
 
-        return Response.ok(weekPlanDto).build();
+
+
+        return Response.ok(plannedWeekResult).build();
     }
 
     @Transactional
@@ -76,7 +79,7 @@ public class TagesPlanResource {
             return Response.status(404).build();
         }
 
-        if (wochenPlan.size() != 7){
+        if (wochenPlan.size() > 7){
             return Response.status(400).build();
         }
 

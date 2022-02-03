@@ -12,12 +12,13 @@ import javafx.util.Pair;
 import org.example.apiClient.dto.GerichtDTO;
 import org.example.apiClient.dto.Mappings;
 import org.example.apiClient.dto.TagesplanDTO;
-import org.example.apiClient.dto.TagesplanDTOo;
+import org.example.apiClient.dto.TagesplanResult;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,20 +49,15 @@ public class PlannerController {
     public Label[] wocheDatum;
 
     List<Pair<Parent, PlannerGerichtConroller>>[] gerichtObjectListe = new ArrayList[8];
-
+    VBox[] vBoxes;
     @FXML
     private void initialize() {
-        System.out.println("get Data");
-        for (TagesplanDTOo tagesplanDTOo : App.appData.getPlannedWeek(kalenderDate)){
-            System.out.println("data");
-        }
+        vBoxes = new VBox[]{moGerichtList, diGerichtList, miGerichtList, doGerichtList, frGerichtList, saGerichtList, soGerichtList};
 
 
         for (int i = 0; i < gerichtObjectListe.length; i++){
             gerichtObjectListe[i] = new ArrayList<>();
         }
-
-
         // Kalender
         wocheDatum = new Label[]{
                 moDatum,
@@ -73,11 +69,14 @@ public class PlannerController {
                 soDatum,
         };
 
+        // lets you change the date of the calendar
         datumEingabe.valueProperty().addListener((ov, oldValue, newValue) -> {
             kalenderDate = newValue.with(DayOfWeek.MONDAY);
             writeDatums(kalenderDate);
+            getGerichtsPlan();
         });
 
+        //Configure the calendar
         datumEingabe.setShowWeekNumbers(true);
         datumEingabe.setValue(kalenderDate);
 
@@ -87,18 +86,21 @@ public class PlannerController {
         root.setPrefWidth(App.bpRoot.widthProperty().get());
 
         // Dragable
-        initDrag(new VBox[]{moGerichtList, diGerichtList, miGerichtList, doGerichtList, frGerichtList, saGerichtList, soGerichtList});
+        initDrag();
+        // Get Data
+        System.out.println("get Data");
+        getGerichtsPlan();
     }
 
-
-
+    // Writes the dates in the labels of the calendar
     private void writeDatums(LocalDate localDate){
         for (int i = 0; i < wocheDatum.length; i++){
             wocheDatum[i].setText(localDate.plusDays(i).format(DateTimeFormatter.ofPattern("dd MM")));
         }
     }
 
-    private void initDrag(VBox[] vBoxes){
+    // lets you drag "gerichte" in the calenda
+    private void initDrag(){
         for (int i = 0; i < vBoxes.length; i++){
             final int index = i;
             vBoxes[i].setOnDragOver(new EventHandler<DragEvent>() {
@@ -119,27 +121,7 @@ public class PlannerController {
 
                     if(whichTable == 7){
                         PlannerGerichtConroller draggedElement = gerichtObjectListe[whichTable].get(tableIndex).getValue();
-                        //// copy dragged Element
-                        // create GerichtObject and fill with data
-                        Pair<Parent, PlannerGerichtConroller> temp = createGerichtObject(draggedElement.getGerichtDTO(), index);
-                        // add to Vbox
-                        vBoxes[index].getChildren().add(temp.getKey());
-                        // add to list
-                        gerichtObjectListe[index].add(temp);
-                        // add delete
-                        temp.getValue().trashPane.setOnMouseClicked(mouseEvent -> {
-                            gerichtObjectListe[temp.getValue().getInWhichVbox()].remove(temp);
-                            vBoxes[temp.getValue().getInWhichVbox()].getChildren().remove(temp.getKey());
-                        });
-                        // add drag
-                        temp.getKey().setOnDragDetected(mouseEvent -> {
-                                        Dragboard db = temp.getKey().startDragAndDrop(TransferMode.ANY);
-                                        ClipboardContent clipboardContent = new ClipboardContent();
-                                        clipboardContent.putString(String.valueOf(temp.getValue().getInWhichVbox())+","+String.valueOf(gerichtObjectListe[temp.getValue().getInWhichVbox()].indexOf(temp)));
-                                        db.setContent(clipboardContent);
-                                });
-
-                        System.out.println("1 At"+index+" "+gerichtObjectListe[index].indexOf(temp));
+                        addNewGerichteObj(draggedElement.getGerichtDTO(), index);
                     }else {
                         if (gerichtObjectListe[index].indexOf(gerichtObjectListe[whichTable].get(tableIndex)) != -1){
                             System.out.println("No duplication please");
@@ -157,9 +139,7 @@ public class PlannerController {
                     savePlannedWeek();
 
                     // Update Date
-                    for (TagesplanDTOo tagesplanDTO : App.appData.getPlannedWeek(kalenderDate)){
-                        System.out.println(tagesplanDTO.getGerichteListe().get(0).getGerichtId());
-                    }
+                    getGerichtsPlan();
                 }
             });
         }
@@ -226,13 +206,69 @@ public class PlannerController {
         List<TagesplanDTO> tagesplanDTOS = new ArrayList<>();
 
         for (int i = 0; i < 7; i++){
+            if (gerichtObjectListe[i].size() == 0){
+                continue;
+            }
+
             TagesplanDTO tagesplanDTO = new TagesplanDTO();
             tagesplanDTO.setIdLocalDate(Mappings.LocalDateToString(kalenderDate.plusDays(i)));
-            tagesplanDTO.setGerichtListIds(gerichtObjectListe[i].stream().map(parentPlannerGerichtConrollerPair -> parentPlannerGerichtConrollerPair.getValue().getGerichtDTO().getId()).collect(Collectors.toList()));
+            tagesplanDTO.setGerichtListIds(gerichtObjectListe[i].stream()
+                    .map(parentPlannerGerichtConrollerPair -> parentPlannerGerichtConrollerPair.getValue().getGerichtDTO().getId())
+                    .collect(Collectors.toList()));
             tagesplanDTOS.add(tagesplanDTO);
         }
 
         App.appData.deletePlannedWeek(kalenderDate);
         App.appData.addPlannedWeek(tagesplanDTOS);
+    }
+
+    public void getGerichtsPlan(){
+        //Clear the data from before
+        clearLocalWeekPlan();
+
+        //Rest - Service - Request
+        for (TagesplanResult tagesplanResult : App.appData.getPlannedWeek(this.kalenderDate)){
+            System.out.println(tagesplanResult);
+            //Fill the Calendar with Data
+            long vboxId = Math.abs(ChronoUnit.DAYS.between(this.kalenderDate, Mappings.StringToLocalDate(tagesplanResult.getIdLocalDate())));
+            if (vboxId > 6){
+                System.out.println("well this is out of scope");
+                continue;
+            }
+
+            List<GerichtDTO> gerichtDTOList = App.appData.getGerichteByIds(tagesplanResult.getGerichteListe().stream().map(TagesplanResult.GerichteListeElementDto::getGerichtId).collect(Collectors.toList()));
+            for (GerichtDTO gerichtDTO : gerichtDTOList){
+                System.out.println(gerichtDTO.toString());
+                addNewGerichteObj(gerichtDTO, (int)vboxId);
+            }
+        }
+    }
+    public void addNewGerichteObj(GerichtDTO gerichtDTO, int index){
+        // create GerichtObject and fill with data
+        Pair<Parent, PlannerGerichtConroller> temp = createGerichtObject(gerichtDTO, index);
+        // add to Vbox
+        vBoxes[index].getChildren().add(temp.getKey());
+        // add to list
+        gerichtObjectListe[index].add(temp);
+        // add delete
+        temp.getValue().trashPane.setOnMouseClicked(mouseEvent -> {
+            gerichtObjectListe[temp.getValue().getInWhichVbox()].remove(temp);
+            vBoxes[temp.getValue().getInWhichVbox()].getChildren().remove(temp.getKey());
+        });
+        // add drag
+        temp.getKey().setOnDragDetected(mouseEvent -> {
+            Dragboard db = temp.getKey().startDragAndDrop(TransferMode.ANY);
+            ClipboardContent clipboardContent = new ClipboardContent();
+            clipboardContent.putString(String.valueOf(temp.getValue().getInWhichVbox())+","+String.valueOf(gerichtObjectListe[temp.getValue().getInWhichVbox()].indexOf(temp)));
+            db.setContent(clipboardContent);
+        });
+        System.out.println("1 At"+index+" "+gerichtObjectListe[index].indexOf(temp));
+    }
+
+    public void clearLocalWeekPlan(){
+        for (int i = 0; i <= 6; i++){
+            if (gerichtObjectListe[i]!=null){gerichtObjectListe[i].clear();}
+            if (vBoxes[i] != null){vBoxes[i].getChildren().clear();}
+        }
     }
 }

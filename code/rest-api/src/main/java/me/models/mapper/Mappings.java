@@ -2,7 +2,7 @@ package me.models.mapper;
 
 import me.models.GerichtDTO;
 import me.models.PersonDTO;
-import me.models.TagesplanDTOo;
+import me.models.TagesplanResult;
 import me.workloads.gerichte.Gericht;
 import me.workloads.person.Person;
 import me.workloads.person.Tagesplan;
@@ -11,10 +11,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
-import java.nio.charset.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 
 @Mapper
@@ -27,8 +25,10 @@ public interface Mappings {
 
     GerichtDTO gerichtToGerichtDTO(Gericht g);
 
-    @Mapping(source = "id.localDate", target = "idLocalDate", qualifiedByName = "LocalDateToString")
-    List<TagesplanDTOo> tagesplanToTageslplanDtoo(List<Tagesplan> tagesplan);
+    List<GerichtDTO> gerichtListeToGerichtDTOListe(List<Gericht> g);
+
+    @Mapping(target = "idLocalDate", source = "entity.id.localDate", qualifiedByName = "LocalDateToString")
+    TagesplanResult TagesplanToTagesplanresult (Tagesplan entity);
 
     @Named("HashToNull")
     public static String HashToNull (byte[] value){

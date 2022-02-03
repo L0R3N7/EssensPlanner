@@ -1,28 +1,19 @@
 package org.example.apiClient.dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public class TagesplanDTOo implements Serializable {
-    private String idLocalDate;
-    private List<GerichteListeElementDto> gerichteListe;
+public class TagesplanResult implements Serializable {
+     String idLocalDate;
+     List<GerichteListeElementDto> gerichteListe;
 
-    public TagesplanDTOo(String idLocalDate, List<GerichteListeElementDto> gerichteListe) {
+    public TagesplanResult(String idLocalDate, List<GerichteListeElementDto> gerichteListe) {
         this.idLocalDate = idLocalDate;
         this.gerichteListe = gerichteListe;
     }
 
-    public TagesplanDTOo() {
-    }
-
-    public String getIdLocalDate() {
-        return idLocalDate;
-    }
-
-    public List<GerichteListeElementDto> getGerichteListe() {
-        return gerichteListe;
+    public TagesplanResult() {
     }
 
     public void setIdLocalDate(String idLocalDate) {
@@ -33,11 +24,20 @@ public class TagesplanDTOo implements Serializable {
         this.gerichteListe = gerichteListe;
     }
 
+    public String getIdLocalDate() {
+        return idLocalDate;
+    }
+
+
+    public List<GerichteListeElementDto> getGerichteListe() {
+        return gerichteListe;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TagesplanDTOo entity = (TagesplanDTOo) o;
+        TagesplanResult entity = (TagesplanResult) o;
         return Objects.equals(this.idLocalDate, entity.idLocalDate) &&
                 Objects.equals(this.gerichteListe, entity.gerichteListe);
     }
@@ -55,33 +55,15 @@ public class TagesplanDTOo implements Serializable {
     }
 
     public static class GerichteListeElementDto implements Serializable {
-        private Long id;
-        private Long sequence;
-        private Long gerichtId;
-
-        public GerichteListeElementDto(Long id, Long sequence, Long gerichtId) {
-            this.id = id;
-            this.sequence = sequence;
-            this.gerichtId = gerichtId;
-        }
+         Long sequence;
+         Long gerichtId;
 
         public GerichteListeElementDto() {
         }
 
-        public Long getId() {
-            return id;
-        }
-
-        public Long getSequence() {
-            return sequence;
-        }
-
-        public Long getGerichtId() {
-            return gerichtId;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
+        public GerichteListeElementDto(Long sequence, Long gerichtId) {
+            this.sequence = sequence;
+            this.gerichtId = gerichtId;
         }
 
         public void setSequence(Long sequence) {
@@ -92,25 +74,31 @@ public class TagesplanDTOo implements Serializable {
             this.gerichtId = gerichtId;
         }
 
+        public Long getSequence() {
+            return sequence;
+        }
+
+        public Long getGerichtId() {
+            return gerichtId;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             GerichteListeElementDto entity = (GerichteListeElementDto) o;
-            return Objects.equals(this.id, entity.id) &&
-                    Objects.equals(this.sequence, entity.sequence) &&
+            return Objects.equals(this.sequence, entity.sequence) &&
                     Objects.equals(this.gerichtId, entity.gerichtId);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id, sequence, gerichtId);
+            return Objects.hash(sequence, gerichtId);
         }
 
         @Override
         public String toString() {
             return getClass().getSimpleName() + "(" +
-                    "id = " + id + ", " +
                     "sequence = " + sequence + ", " +
                     "gerichtId = " + gerichtId + ")";
         }

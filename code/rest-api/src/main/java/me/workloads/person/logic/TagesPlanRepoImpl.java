@@ -1,6 +1,5 @@
 package me.workloads.person.logic;
 
-import me.models.TagesplanDTO;
 import me.workloads.person.Tagesplan;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -20,15 +19,14 @@ public class TagesPlanRepoImpl implements TagesPlanRepo{
 
     @Override
     public List<Tagesplan> getWeek(LocalDate localDate, Long personId) {
-        List<LocalDate> week = new ArrayList<>();
-        for (int i = 0; i < 7; i++){
-            week.add(localDate.plusDays(i));
-        }
+
+        LocalDate endOfWeek = localDate.plusWeeks(1);
 
         TypedQuery<Tagesplan> typedQuery = this.entityManager
-                .createQuery("select t from Tagesplan t where t.id.personId = :personId and t.id.localDate in :week order by t.id.localDate", Tagesplan.class)
+                .createQuery("select t from Tagesplan t where t.id.personId = :personId and t.id.localDate between :startOfWeek and :endOfWeek order by t.id.localDate", Tagesplan.class)
                 .setParameter("personId", personId)
-                .setParameter("week", week);
+                .setParameter("startOfWeek", localDate)
+                .setParameter("endOfWeek", endOfWeek);
 
         return typedQuery.getResultStream().collect(Collectors.toList());
     }
@@ -39,6 +37,19 @@ public class TagesPlanRepoImpl implements TagesPlanRepo{
                 .createQuery("delete from Tagesplan t where t.id.localDate = :day and t.id.personId = :person")
                 .setParameter("person", person)
                 .setParameter("day", days);
+        query.executeUpdate();
+    }
+
+    @Override
+    public void deleteWeek(LocalDate monday, Long person){
+        var sunday = monday.plusWeeks(1);
+
+        var query = this.entityManager
+                .createQuery("delete from Tagesplan t where t.id.localDate between :mondey and :sunday and t.id.personId = :person")
+                .setParameter("person", person)
+                .setParameter("sunday", sunday)
+                .setParameter("mondey", monday);
+
         query.executeUpdate();
     }
 

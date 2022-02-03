@@ -1,7 +1,5 @@
 package me.workloads.person;
 
-import com.sun.tools.javac.jvm.Gen;
-
 import javax.persistence.*;
 
 @Entity

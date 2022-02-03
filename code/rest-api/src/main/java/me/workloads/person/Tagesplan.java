@@ -45,7 +45,7 @@ public class Tagesplan {
 
     public GerichteListeElement addGerichteListe(long gerichtId){
         long maxsequence = this.gerichteListe.stream().mapToLong(GerichteListeElement::getSequence).max().orElse(0) +1;
-        GerichteListeElement gerichteListeElement = GerichteListeElement.create(gerichtId, maxsequence, this);
+        GerichteListeElement gerichteListeElement = GerichteListeElement.create(maxsequence,gerichtId , this);
         this.gerichteListe.add(gerichteListeElement);
         return gerichteListeElement;
     }

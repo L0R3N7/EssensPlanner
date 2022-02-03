@@ -9,7 +9,7 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import org.example.apiClient.dto.GerichtDTO;
 import org.example.apiClient.dto.PersonDTO;
 import org.example.apiClient.dto.TagesplanDTO;
-import org.example.apiClient.dto.TagesplanDTOo;
+import org.example.apiClient.dto.TagesplanResult;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
 import javax.ws.rs.core.MediaType;
@@ -98,13 +98,23 @@ public class RestApiClient {
                 .delete(personDTO);
     }
 
-    public List<TagesplanDTOo> getPlannedWeek(String localDateToString, PersonDTO personDTO) {
+    public List<TagesplanResult> getPlannedWeek(String localDateToString, PersonDTO personDTO) {
         return webResource
                 .path("tagesplan")
                 .path("week")
                 .path(localDateToString)
                 .type(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
-                .post(new GenericType<List<TagesplanDTOo>>() {}, personDTO);
+                .post(new GenericType<List<TagesplanResult>>() {}, personDTO);
+    }
+
+    public List<GerichtDTO> getGerichtelistByIds(List<Long> gerichteIdList) {
+        return webResource
+                .path("gericht")
+                .path("ids")
+                .type(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .post(new GenericType<List<GerichtDTO>>() {
+                }, gerichteIdList);
     }
 }

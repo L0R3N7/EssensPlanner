@@ -5,6 +5,7 @@ import org.example.apiClient.dto.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.LongStream;
 
 public class AppData {
     private final RestApiClient restClient = new RestApiClient();
@@ -61,9 +62,12 @@ public class AppData {
         restClient.deletePlannedWeek(Mappings.LocalDateToString(localDate), this.personDTO);
     }
 
-    public List<TagesplanDTOo> getPlannedWeek(LocalDate localDate){
+    public List<TagesplanResult> getPlannedWeek(LocalDate localDate){
         return restClient.getPlannedWeek(Mappings.LocalDateToString(localDate), this.personDTO);
     }
 
 
+    public List<GerichtDTO> getGerichteByIds(List<Long> gerichteIdList) {
+        return restClient.getGerichtelistByIds(gerichteIdList);
+    }
 }

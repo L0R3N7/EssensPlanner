@@ -30,6 +30,15 @@ public class GerichtResource {
     @Inject
     FavouriteGerichteService favouriteGerichteService;
 
+    @POST
+    @Path("ids")
+    public Response searchByIds(
+            List<Long> ids
+    ){
+        List<Gericht> gerichtList = ids.stream().map(aLong -> {return this.gerichtService.getGerichtById(aLong);}).collect(Collectors.toList());
+        return Response.ok(Mappings.INSTANCE.gerichtListeToGerichtDTOListe(gerichtList)).build();
+    }
+
     @GET
     @Path("search/{searchString}")
     public Response search(

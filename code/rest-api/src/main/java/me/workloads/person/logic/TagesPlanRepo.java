@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface TagesPlanRepo {
+    void deleteWeek(LocalDate monday, Long person);
+
     List<Tagesplan> getTagesPläne(LocalDate localDate);
 
     void delete(List<Tagesplan> tagesPlans);
