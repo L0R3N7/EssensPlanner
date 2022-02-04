@@ -86,7 +86,6 @@ public class TagesPlanResource {
         this.tagesPlanService.addWeek(wochenPlan, person.getId());
         return Response.ok().build();
     }
-
     /*@Transactional
     @PUT
     @Path("week")

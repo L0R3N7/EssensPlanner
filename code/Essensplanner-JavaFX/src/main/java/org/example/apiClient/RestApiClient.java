@@ -12,8 +12,14 @@ import org.example.apiClient.dto.TagesplanDTO;
 import org.example.apiClient.dto.TagesplanResult;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,9 +31,30 @@ public class RestApiClient {
     WebResource webResource;
 
     public RestApiClient() {
+        ignoreSelfSigendCertificate();
         clientConfig.getClasses().add(JacksonJsonProvider.class);
         client = Client.create(clientConfig);
-        webResource = client.resource(UriBuilder.fromUri("http://localhost:8080").build());
+        webResource = client.resource(UriBuilder.fromUri("https://localhost:8443").build());
+    }
+
+    public void ignoreSelfSigendCertificate() {
+        // Create a trust manager that does not validate certificate chains
+        TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager(){
+            public java.security.cert.X509Certificate[] getAcceptedIssuers(){return null;}
+            public void checkClientTrusted(X509Certificate[] certs, String authType){}
+            public void checkServerTrusted(X509Certificate[] certs, String authType){}
+        }};
+
+// Install the all-trusting trust manager
+        try {
+            SSLContext sc = SSLContext.getInstance("TLS");
+            sc.init(null, trustAllCerts, new SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        } catch (Exception e) {
+            ;
+        }
+
+        return;
     }
 
     public PersonDTO personSignIn(PersonDTO p) {
