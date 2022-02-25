@@ -1,0 +1,17 @@
+@import "src/styles";
+
+#container{
+  width: 100vw;
+  height: calc(100vh - #{$nav-height});
+  overflow: hidden;
+
+
+}
+
+h1, p{
+  text-align: center;
+}
+
+h1{
+  font-size: 120pt;
+}

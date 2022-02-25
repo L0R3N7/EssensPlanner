@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="shadow">
+<mat-toolbar color="primary" class="shadow fixed">
   <span class="logo" routerLink="/landingPage">{{title}}</span>
   <a *ngIf="isLoggedIn" mat-button routerLink="/planning">Planning</a>
   <a *ngIf="isLoggedIn" mat-button routerLink="/search" >Search</a>
@@ -8,4 +8,6 @@
     <p>show UserProfile</p>
   </ng-template>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<div class="bg">
+  <router-outlet></router-outlet>
+</div>

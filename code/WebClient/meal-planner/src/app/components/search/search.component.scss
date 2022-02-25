@@ -1,6 +1,29 @@
 @import "../../../styles";
 
 //** Class **//
-.container{
-  display: flex;
+#container{
+  @extend .shadow;
+
+  display: inline-flex;
+  background-color: $bg-darker;
+  width: 100%;
+
+  padding: 1.5px;
+
+  >*{
+    margin: 2.5px;
+  }
+
+  input{
+    @extend .shadow-inner-outer;
+    outline: none;
+    width: 100%;
+  }
+  button{
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    line-height: normal;
+  }
 }

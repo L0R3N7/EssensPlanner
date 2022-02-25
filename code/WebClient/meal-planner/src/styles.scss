@@ -1,11 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
 /** Variables **/
+/* Color */
+$bg-darker: #bdbdbd;
+$bg-dark: #c5c5c5;
+$bg-bright: #e8e8e8;
+$color-shadow: rgba(0, 0, 0, 0.25);
+$color-i: #000;
 $color: #fff;
+
+/* Sizes */
+$abstand: calc(10px + 4vw);
+$nav-height: 60px;
 
 //** Elements **//
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 
 //** Class **//
 .rounded{
@@ -13,11 +24,36 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: 5px;
 }
 
-.shadow{
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+.fixed{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
 
+.shadow{
+  box-shadow: $color-shadow 0px 4px 4px;
 }
 
 .shadow-inner{
-  box-shadow: inset rgba(0, 0, 0, 0.25) 0px 4px 4px;
+  box-shadow: inset $color-shadow 0px 4px 4px;
+}
+
+.shadow-inner-outer{
+  box-shadow: inset $color-shadow 0px 1px 2px, $color-shadow 4px 2px 4px;
+
+}
+
+.bg{
+  background-color: $bg-bright;
+}
+
+.center-child-flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-center{
+  text-align: center;
 }

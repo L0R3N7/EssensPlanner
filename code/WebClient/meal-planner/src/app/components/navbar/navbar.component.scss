@@ -10,5 +10,12 @@
   cursor: pointer;
 }
 
+mat-toolbar{
+  height: $nav-height;
+}
+.bg{
+  transform: translateY($nav-height);
+}
+
 
 

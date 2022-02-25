@@ -13,6 +13,9 @@ import { PlannerComponent } from './planner/planner.component';
 import { SearchComponent } from './components/search/search.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SearchPageComponent } from './search-page/search-page.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { MealComponent } from './components/meal/meal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { SearchPageComponent } from './search-page/search-page.component';
     PlannerComponent,
     SearchComponent,
     PageNotFoundComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    MealComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import { SearchPageComponent } from './search-page/search-page.component';
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
