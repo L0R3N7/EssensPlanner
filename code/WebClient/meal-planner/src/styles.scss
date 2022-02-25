@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+/** Variables **/
+$color: #fff;
+
+//** Elements **//
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//** Class **//
+.rounded{
+  border: solid 0px;
+  border-radius: 5px;
+}
+
+.shadow{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+
+}
+
+.shadow-inner{
+  box-shadow: inset rgba(0, 0, 0, 0.25) 0px 4px 4px;
+}

@@ -1,0 +1,11 @@
+<mat-toolbar color="primary" class="shadow">
+  <span class="logo" routerLink="/landingPage">{{title}}</span>
+  <a *ngIf="isLoggedIn" mat-button routerLink="/planning">Planning</a>
+  <a *ngIf="isLoggedIn" mat-button routerLink="/search" >Search</a>
+  <span class="nav-spacer"></span>
+  <button *ngIf="!isLoggedIn; else User_Profile" mat-raised-button color="accent" >Get Planning</button>
+  <ng-template #User_Profile>
+    <p>show UserProfile</p>
+  </ng-template>
+</mat-toolbar>
+<router-outlet></router-outlet>
