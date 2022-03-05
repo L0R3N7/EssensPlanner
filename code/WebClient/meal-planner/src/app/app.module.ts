@@ -16,6 +16,9 @@ import { SearchPageComponent } from './search-page/search-page.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { MealComponent } from './components/meal/meal.component';
+import { FooterComponent } from './components/footer/footer.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import { MealsComponent } from './components/meals/meals.component';
 
 @NgModule({
   declarations: [
@@ -26,18 +29,21 @@ import { MealComponent } from './components/meal/meal.component';
     SearchComponent,
     PageNotFoundComponent,
     SearchPageComponent,
-    MealComponent
+    MealComponent,
+    FooterComponent,
+    MealsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatPaginatorModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatPaginatorModule,
+        MatSidenavModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

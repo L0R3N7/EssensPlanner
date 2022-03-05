@@ -1,0 +1,10 @@
+@import "src/styles";
+
+mat-drawer-container{
+  width: 100%;
+  height: calc(100vh - #{$nav-height});
+}
+
+#sidebar-container{
+  margin: calc(#{$abstand} / 4)
+}

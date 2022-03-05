@@ -1,9 +1,55 @@
-<div id="container" class="rounded shadow center-child-flex">
+<!--<div id="container" class="rounded shadow center-child-grid">
     <img src="{{image_url}}">
-    <div>
-      <h3>{{name}}</h3>
-      <p>{{rating}}/5.0</p>
-      <mat-icon aria-hidden="false" aria-label="Not Liked Icon">star_outline</mat-icon>
-      <mat-icon aria-hidden="false" aria-label="Recipe Icon">format_list_numbered_rtl</mat-icon>
+    <div id="content" class="test">
+      <div id="main-content"class="test">
+        <mat-icon id="icon-recipe" aria-hidden="false" aria-label="Recipe Icon">format_list_numbered_rtl</mat-icon>
+        <mat-icon id="icon-liked" aria-hidden="false" aria-label="Not Liked Icon">star_outline</mat-icon>
+        <div id="text">
+          <h3 id="name">{{name}}</h3>
+          <p id="rating">{{rating}}/5.0</p>
+        </div>
+      </div>
+      <div *ngIf="expanded" id="additional-content">
+        <div id="tags"></div>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      </div>
+      <mat-icon id="icon-expand" (click)="toggleExpand()" aria-hidden="false" aria-label="Expand Icon">{{expanded ? 'expand_less' : 'expand_more'}}</mat-icon>
+    </div>
+</div>-->
+<div id="container" class="shadow rounded">
+  <div id="likde-container">
+    <button mat-fab>
+      <mat-icon>stare</mat-icon>
+      <!--favorite_border-->
+    </button>
+  </div>
+
+  <img class="w-100" src="https://image.brigitte.de/11067578/t/KZ/v3/w960/r1/-/kohle-burger-mit-eingelegten-roten-zwiebeln.jpg">
+
+  <div id="content-bg" class="rounded w-100">
+    <div id="content">
+      <div id="content-header" class="w-100">
+        <h2>Gong Bao</h2>
+        <div id="bewertung">
+          <p>(300)</p>
+          <h3>4.4 / 5.0</h3>
+          <mat-icon>star</mat-icon>
+
+        </div>
+      </div>
+      <div id="content-desc">
+        <p #contentdesctext>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      </div>
+      <div id="content-icon-desc" class="w-100">
+        <div id="difficulty">
+          <mat-icon>Stufen</mat-icon>
+          <p>Hard</p>
+        </div>
+        <div id="time">
+          <mat-icon>clock</mat-icon>
+          <p>15 min</p>
+        </div>
+      </div>
+    </div>
     </div>
 </div>

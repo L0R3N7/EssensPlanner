@@ -3,7 +3,7 @@
 #header{
   flex-direction: column;
   height: 15vh;
-  background-color: $bg-dark;
+  background-color: $bg-grey;
 
   app-search{
     width: 80%;
@@ -12,11 +12,20 @@
 
 #search-result{
   height: calc(85vh - #{$nav-height});
+  overflow: hidden;
 }
 
 #content{
   flex-direction: column;
   justify-content: space-between;
+  row-gap: 1vh;
+  overflow: hidden;
+}
+
+#meal-content{
+  padding: calc(#{$abstand} / 2);
+  overflow-y: scroll;
+  height: 100%;
 }
 
 
@@ -24,4 +33,5 @@ mat-paginator{
   position: absolute;
   width: 100%;
   bottom: 0px;
+  z-index: 1;
 }

@@ -1,0 +1,10 @@
+@import "src/styles";
+
+#content{
+  padding: $abstand 0 15% 0;
+  display: flex;
+  gap: calc(#{$abstand} / 8);
+  flex-wrap: wrap;
+  justify-content: center;
+  //margin-bottom: calc((200px + 10vw) * 1.3);
+}

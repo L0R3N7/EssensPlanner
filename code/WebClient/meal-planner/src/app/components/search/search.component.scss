@@ -5,10 +5,10 @@
   @extend .shadow;
 
   display: inline-flex;
-  background-color: $bg-darker;
+  background-color: $bg-greyer;
   width: 100%;
 
-  padding: 1.5px;
+  padding: 2.5px;
 
   >*{
     margin: 2.5px;

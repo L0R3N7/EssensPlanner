@@ -1,16 +1,13 @@
-<div id="container">
-  <div id="header" class="center-child-flex">
-    <h1>Search Recipts</h1>
-    <app-search></app-search>
+<div id="header" class="center-child-flex">
+  <h1>Search Recipts</h1>
+  <app-search></app-search>
+</div>
+<div id="search-result">
+  <div id="meal-content">
+    <app-meals></app-meals>
   </div>
-  <div id="search-result">
-    <div id="content" class="center-child-flex">
-      <app-meal></app-meal>
-      <app-meal></app-meal>
-    </div>
-    <mat-paginator>[length]="100"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-      aria-label="Select page"></mat-paginator>
-  </div>
+  <mat-paginator [length]="100"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page"></mat-paginator>
 </div>

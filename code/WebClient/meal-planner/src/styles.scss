@@ -1,9 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-
 /** Variables **/
 /* Color */
-$bg-darker: #bdbdbd;
-$bg-dark: #c5c5c5;
+$bg-greyer: #bdbdbd;
+$bg-grey: #c5c5c5;
 $bg-bright: #e8e8e8;
 $color-shadow: rgba(0, 0, 0, 0.25);
 $color-i: #000;
@@ -12,6 +10,7 @@ $color: #fff;
 /* Sizes */
 $abstand: calc(10px + 4vw);
 $nav-height: 60px;
+$footer-height: 10vh;
 
 //** Elements **//
 html, body { height: 100%; }
@@ -19,6 +18,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 //** Class **//
+.test{
+  border: dotted red 1px;
+}
+
 .rounded{
   border: solid 0px;
   border-radius: 5px;
@@ -54,6 +57,41 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   justify-content: center;
 }
 
+.center-child-grid{
+  display: grid;
+  align-items: center;
+  align-content: center;
+}
+
 .text-center{
   text-align: center;
+}
+
+.w-100{
+  width: 100%;
+}
+
+/***     Elements      ***/
+/**   Scrollbar   **/
+/* width */
+::-webkit-scrollbar {
+  width: 4%;
+}
+
+/* Track */
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background-color: #000000;
 }

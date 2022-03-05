@@ -2,10 +2,7 @@
 
 #container{
   width: 100vw;
-  height: calc(100vh - #{$nav-height});
-  overflow: hidden;
-
-
+  height: calc(100vh - #{$nav-height} - #{$footer-height});
 }
 
 h1, p{
