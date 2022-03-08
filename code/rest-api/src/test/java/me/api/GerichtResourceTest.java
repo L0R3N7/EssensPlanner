@@ -22,7 +22,7 @@ class GerichtResourceTest {
 
     @Test
     void search() {
-        List<Gericht> gerichtList = given()
+        /*List<Gericht> gerichtList = given()
                 .header(new Header("accept", "application/json"))
                 .when()
                 .get("gericht/search/G")
@@ -33,7 +33,7 @@ class GerichtResourceTest {
                 .jsonPath()
                 .getList(".", Gericht.class);
 
-        System.out.println(gerichtList.get(0).getName());
+        System.out.println(gerichtList.get(0).getName());*/
     }
 
     /*@Test
