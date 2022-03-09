@@ -35,7 +35,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
       - name: build-application-server
-        run: 
+        run: |
           mvn clean package
           ls -a ./target
         working-directory: code/rest-api
