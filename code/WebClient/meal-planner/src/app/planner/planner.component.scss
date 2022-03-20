@@ -1,10 +1,23 @@
 @import "src/styles";
 
+//Elements
 mat-drawer-container{
   width: 100%;
   height: calc(100vh - #{$nav-height});
 }
 
 #sidebar-container{
-  margin: calc(#{$abstand} / 4)
+  margin: calc(#{$abstand} / 4);
+  margin-top: 0;
+  position: relative;
+  top: 2%;
+  width: 20vw;
+}
+
+// IDs
+#search-open{
+  position: absolute;
+  top: 2%;
+  border: 0px solid;
+  border-radius: 0 $round-size $round-size  0;
 }

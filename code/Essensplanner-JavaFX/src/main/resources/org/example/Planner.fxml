@@ -28,9 +28,9 @@
                   <String fx:value="padding-all-10" />
                </styleClass>
             </VBox>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="398.0" prefWidth="199.0" styleClass="bg-ele">
+            <ScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" styleClass="bg-ele" stylesheets="@css/javafx.css">
                <content>
-                  <VBox fx:id="favGerichtList" alignment="TOP_CENTER" prefWidth="149.0" styleClass="bg-white" />
+                  <VBox fx:id="favGerichtList" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="149.0" styleClass="bg-ele" />
                </content>
             </ScrollPane>
          </children>

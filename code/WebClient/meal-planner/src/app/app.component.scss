@@ -1,0 +1,21 @@
+@import "src/styles";
+
+/** Class **/
+.nav-spacer{
+  flex: 1 1 auto;
+}
+
+.logo{
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+mat-toolbar{
+  height: $nav-height;
+}
+.bg{
+  transform: translateY($nav-height);
+}
+
+
+

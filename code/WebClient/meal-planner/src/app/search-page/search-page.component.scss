@@ -1,8 +1,7 @@
 @import "src/styles";
 
 #header{
-  flex-direction: column;
-  height: 15vh;
+  height: 10vh;
   background-color: $bg-grey;
 
   app-search{
@@ -11,7 +10,7 @@
 }
 
 #search-result{
-  height: calc(85vh - #{$nav-height});
+  height: calc(90vh - #{$nav-height});
   overflow: hidden;
 }
 
@@ -30,8 +29,8 @@
 
 
 mat-paginator{
-  position: absolute;
+  position: sticky;
   width: 100%;
-  bottom: 0px;
+  bottom: -1px;
   z-index: 1;
 }

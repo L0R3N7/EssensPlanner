@@ -19,20 +19,29 @@
 }
 
 #content-icon-desc{
-  #time, #difficulty{
-    display: inline-flex;
-    justify-content: center;
-    gap: 25px;
-
-    *>p{
-      margin: 0;
-    }
-  }
-
   display: flex;
   justify-content: space-around;
   position: absolute;
-  bottom: 5%;
+  bottom: 10%;
+
+  #difficulty{
+    &>.mat-icon{
+      transform: scaleX(-1);
+      //-webkit-text-stroke-width: .5px;
+      //-webkit-text-stroke-color: $color;
+    }
+  }
+  #time, #difficulty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25%;
+
+    &>p{
+      margin: 0;
+      white-space: nowrap;
+    }
+  }
 }
 
 img{
@@ -57,7 +66,7 @@ img{
 
 #content-desc {
   width: 100%;
-  height: 45%;
+  height: 50%;
   overflow-y: auto;
 
   p{

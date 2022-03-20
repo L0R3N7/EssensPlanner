@@ -16,7 +16,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <GridPane alignment="CENTER">
+      <GridPane alignment="CENTER" styleClass="bg-ele">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0" prefWidth="100.0" />
         </columnConstraints>
@@ -27,9 +27,9 @@
             <TextField fx:id="SearchField" />
          </children>
       </GridPane>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="320.0" GridPane.rowIndex="1">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="6000.0" styleClass="bg-ele" GridPane.rowIndex="1">
          <content>
-            <VBox fx:id="vBox" alignment="TOP_CENTER" prefHeight="444.0" prefWidth="600.0" style="-fx-spacing: 10;" styleClass="bg-ele" />
+            <VBox fx:id="vBox" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="817.0" style="-fx-spacing: 10;" styleClass="bg-ele" />
          </content>
       </ScrollPane>
    </children>

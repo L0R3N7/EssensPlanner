@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="root" prefHeight="62.0" prefWidth="129.0" styleClass="bg-ele" stylesheets="@css/javafx.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PlannerGerichtConroller">
+<GridPane fx:id="root" maxWidth="1.7976931348623157E308" prefHeight="62.0" prefWidth="129.0" styleClass="bg-ele" stylesheets="@css/javafx.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PlannerGerichtConroller">
    <columnConstraints>
       <ColumnConstraints fx:id="labelbox" halignment="CENTER" minWidth="10.0" prefWidth="80.0" />
       <ColumnConstraints fx:id="iconboxbox" hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />

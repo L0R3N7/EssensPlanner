@@ -1,12 +1,17 @@
 <mat-drawer-container>
-  <mat-drawer #drawer mode="side" opened>
+  <mat-drawer #drawer mode="side" opened (closed)="sidebar_closed()" (opened)="sidebar_opened()">
     <div id="sidebar-container">
       <app-search></app-search>
+      <app-meals></app-meals>
     </div>
   </mat-drawer>
   <mat-drawer-content>
-    <button mat-raised-button (click)="drawer.toggle()">
-      toggle side nav
+    <button id="search-open" mat-raised-button (click)="drawer.toggle()">
+      <mat-icon>
+        {{sidebar_icon[sidebar_icon_state]}}
+      </mat-icon>
     </button>
+    <div>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>

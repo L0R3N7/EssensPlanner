@@ -11,6 +11,7 @@ $color: #fff;
 $abstand: calc(10px + 4vw);
 $nav-height: 60px;
 $footer-height: 10vh;
+$round-size: 5px;
 
 //** Elements **//
 html, body { height: 100%; }
@@ -24,7 +25,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .rounded{
   border: solid 0px;
-  border-radius: 5px;
+  border-radius: $round-size;
 }
 
 .fixed{

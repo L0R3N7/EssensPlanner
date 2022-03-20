@@ -254,6 +254,7 @@ public class PlannerController {
         temp.getValue().trashPane.setOnMouseClicked(mouseEvent -> {
             gerichtObjectListe[temp.getValue().getInWhichVbox()].remove(temp);
             vBoxes[temp.getValue().getInWhichVbox()].getChildren().remove(temp.getKey());
+            savePlannedWeek();
         });
         // add drag
         temp.getKey().setOnDragDetected(mouseEvent -> {
