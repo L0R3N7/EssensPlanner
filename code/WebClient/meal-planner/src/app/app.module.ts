@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'
+
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +21,10 @@ import { MealComponent } from './components/meal/meal.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { MealsComponent } from './components/meals/meals.component';
+import { MealKalenderComponent } from './components/meal-kalender/meal-kalender.component';
+import {MatInputModule} from "@angular/material/input";
+import { LognSigninPageComponent } from './logn-signin-page/logn-signin-page.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -29,20 +36,28 @@ import { MealsComponent } from './components/meals/meals.component';
     SearchPageComponent,
     MealComponent,
     FooterComponent,
-    MealsComponent
+    MealsComponent,
+    MealKalenderComponent,
+    LognSigninPageComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        LayoutModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatIconModule,
-        MatPaginatorModule,
-        MatSidenavModule
-    ],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
+  ],
+  providers: [
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

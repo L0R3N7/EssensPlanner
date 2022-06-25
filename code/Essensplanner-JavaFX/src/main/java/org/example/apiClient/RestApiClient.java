@@ -34,7 +34,7 @@ public class RestApiClient {
         ignoreSelfSigendCertificate();
         clientConfig.getClasses().add(JacksonJsonProvider.class);
         client = Client.create(clientConfig);
-        webResource = client.resource(UriBuilder.fromUri("https://localhost:8443").build());
+        webResource = client.resource(UriBuilder.fromUri("http://localhost:8080").build());
     }
 
     public void ignoreSelfSigendCertificate() {

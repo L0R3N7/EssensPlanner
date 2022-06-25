@@ -1,0 +1,33 @@
+<div style="height: 80vh; width: 100%" class="bg center-child-flex">
+<div style="height: 80vh; width: 100%" class="bg center-child-flex">
+  <div class="rounded  " style="width: 70%; height: 70%; padding: 5%">
+    <div id="logsignheader" style="display: flex;" >
+      <h2 [ngStyle]="{'text-decoration' : !isLog ? 'underline' : ''}" (click)="isLog = false" style="padding-right: 5%;">Sign In</h2>
+      <h2 [ngStyle]="{'text-decoration' : isLog ? 'underline' : ''}" (click)="isLog = true">Log In</h2>
+    </div>
+    <div id="logsignbody">
+      <div *ngIf="!isLog" id="signbody">
+        <p>sign</p>
+      </div>
+      <div *ngIf="isLog" id="logbody">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <label for="username">Username: </label>
+            <input id="username" type="text" formControlName="username">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <label for="password">Password: </label>
+            <input id="password" type="password" formControlName="password">
+          </mat-form-field>
+          <button type="submit" mat-raised-button color="accent">Log In</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+

@@ -3,7 +3,7 @@
   <a *ngIf="isLoggedIn" mat-button routerLink="/planning">Planning</a>
   <a *ngIf="isLoggedIn" mat-button routerLink="/search" >Search</a>
   <span class="nav-spacer"></span>
-  <button *ngIf="!isLoggedIn; else User_Profile" mat-raised-button color="accent" >Get Planning</button>
+  <a *ngIf="!isLoggedIn; else User_Profile" routerLink="/SignLogIn" mat-raised-button color="accent">Get Planning | LogSignIn</a>
   <ng-template #User_Profile>
     <p>show UserProfile</p>
   </ng-template>

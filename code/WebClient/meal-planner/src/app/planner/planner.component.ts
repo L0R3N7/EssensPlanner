@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PlannerComponent implements OnInit {
   sidebar_icon:string[] = ["search", "close"];
   sidebar_icon_state:number = 0;
+  today : object = new Date();
 
   constructor() { }
 

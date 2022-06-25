@@ -1,0 +1,22 @@
+<div class="shadow rounded" id="wrapper">
+  <div id="kalender-header" class="w-100">
+
+    <div id="date">
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div id="add-meal">
+      <button mat-raised-button>adsf</button>
+    </div>
+
+  </div>
+  <div id="kalender-content" class="w-100">
+
+  </div>
+</div>
